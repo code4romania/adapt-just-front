@@ -3,7 +3,7 @@
     <v-container fill-height>
       <v-row class="justify-center align-center">
         <v-col cols="auto">
-          <security-login-form @success="onLoggedIn"/>
+          <security-setup-password-form @success="onSuccess" />
         </v-col>
       </v-row>
     </v-container>
@@ -14,23 +14,14 @@
 
 export default {
   layout: 'blank',
-  auth: 'guest',
-  head () {
-    return {
-      title: 'Login'
-    }
-  },
+  auth: false,
   components: {
   },
   computed: {
-
-  },
-  beforeMount () {
-
   },
   methods:{
-    onLoggedIn(){
-      this.$router.push('/admin')
+    onSuccess(){
+      this.$router.push('/admin');
     }
   }
 }
