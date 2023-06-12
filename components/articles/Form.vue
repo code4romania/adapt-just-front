@@ -35,23 +35,19 @@
 
                 <div class="mb-5">
                   <ui-form-label>Continut</ui-form-label>
-                  <Editor api-key="lrxq3bhmei2fjbso62k9bhdatxeup6dyuehhhjvz9psqzy1v"
-                          :init="{
-                          plugins: 'lists link image table code  wordcount',
-                          height: 300
-                        }"
-                          v-model="article.content"
-                  ></Editor>
+                  <ui-form-text-editor
+                    mode="advanced"
+                    :value="article.content"
+                    @input="article.content = $event"
+                  />
                 </div>
                 <div class="mb-5">
                   <ui-form-label>Continut simplificat</ui-form-label>
-                  <Editor api-key="lrxq3bhmei2fjbso62k9bhdatxeup6dyuehhhjvz9psqzy1v"
-                          :init="{
-                            plugins: 'lists link image table code  wordcount',
-                            height: 300
-                          }"
-                          v-model="article.short_content"
-                  ></Editor>
+                  <ui-form-text-editor
+                      mode="simple"
+                      :value="article.short_content"
+                      @input="article.short_content = $event"
+                  />
                 </div>
               </v-col>
               <v-col sm="12" md="4">
@@ -60,7 +56,6 @@
                   outlined
                 >
                   <v-card-text>
-
                     <v-switch
                       v-model="article.status"
                       true-value="active"
@@ -79,7 +74,7 @@
         </template>
         <template #actions>
           <v-spacer/>
-          <v-btn :loading="loading" large outlined plain  to="/admin/users" >Anuleaza</v-btn>
+          <v-btn :loading="loading" large outlined plain  to="/admin/articles" >Anuleaza</v-btn>
           <v-btn :loading="loading" large color="primary" @click="submit" >Salveaza</v-btn>
         </template>
       </ui-form-card>
@@ -115,7 +110,7 @@ export default {
     async changeImage(file){
       if (file) {
         try {
-          this.article.upload = await this.$store.dispatch('uploads/create', { file})
+          this.article.upload = await this.upload(file)
         } catch (e) {
           const snack = { color: 'error', message: e.message }
           this.$store.commit('snackbar/setSnack', snack)
@@ -123,8 +118,18 @@ export default {
       } else {
         this.article.upload = null
       }
-
-
+    },
+    async handleTinymceUpload(blobInfo, success, failure) {
+      try {
+        const file = await this.upload(blobInfo.blob())
+        success(file.dataUrl)
+      } catch (e) {
+        const snack = { color: 'error', message: e.message }
+        this.$store.commit('snackbar/setSnack', snack)
+      }
+    },
+    async upload(file) {
+      return await this.$store.dispatch('uploads/create', { file});
     },
     async submit() {
       this.loading      = true;

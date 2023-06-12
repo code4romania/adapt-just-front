@@ -1,5 +1,5 @@
 <template>
-  <table-list
+  <ui-table-list
     :headers="headers"
     :items="items"
     :loading="loading"
@@ -12,7 +12,11 @@
     <template v-slot:item="{ item }">
       <tr>
         <td>{{ item.name }}</td>
-        <td>{{ item.status }}</td>
+        <td>{{ item.type_label }}</td>
+        <td>
+          <v-chip v-if="item.status === 'active'" small color="success"> &#9679; Publicat</v-chip>
+          <v-chip v-else small>&#9679; Draft</v-chip>
+        </td>
         <td>{{ item.published_at ? $moment(item.published_at).format('DD-MM-YYYY HH:mm') : ''}}</td>
         <td style="width: 120px; text-align: right">
           <v-menu
@@ -32,8 +36,8 @@
 
             <v-list dense>
               <v-list-item
-                v-if="$user.hasPermission('View - articles')"
-                :to="`/admin/articles/${item.id}/view`"
+                v-if="$user.hasPermission('View - resources')"
+                :to="`/admin/resources/${item.id}/view`"
               >
                 <v-list-item-icon>
                   <v-icon small>mdi-eye</v-icon>
@@ -43,8 +47,8 @@
                 </v-list-item-content>
               </v-list-item>
               <v-list-item
-                v-if="$user.hasPermission('Update - articles')"
-                :to="`/admin/articles/${item.id}/edit`"
+                v-if="$user.hasPermission('Update - resources')"
+                :to="`/admin/resources/${item.id}/edit`"
               >
                 <v-list-item-icon>
                   <v-icon small>mdi-pencil</v-icon>
@@ -55,7 +59,7 @@
               </v-list-item>
 
               <v-list-item
-                v-if="$user.hasPermission('Delete - articles')"
+                v-if="$user.hasPermission('Delete - resources')"
                 @click="deleteItem(item)"
                 :loading="item.loadingDelete"
               >
@@ -74,14 +78,12 @@
     <template v-slot:no-data>
       Empty list
     </template>
-  </table-list>
+  </ui-table-list>
 </template>
 
 <script>
 
-import TableList from "@/components/ui/TableList";
 export default {
-  components: {TableList},
   data: () => ({
     loading: false,
     page: 1,
@@ -97,6 +99,28 @@ export default {
         sortable: true,
         filter: {
           type: 'string'
+        }
+      },
+      {
+        text: 'Categorie',
+        value: 'type',
+        sortable: true,
+        filter: {
+          type: 'select',
+          options: [
+            {
+              text: 'Organizatie',
+              value: 'organisation'
+            },
+            {
+              text: 'Numar de telefon',
+              value: 'phone_number'
+            },
+            {
+              text: 'Sfaturi avocat',
+              value: 'lawyer'
+            },
+          ]
         }
       },
       {
@@ -131,7 +155,7 @@ export default {
 
   },
   mounted() {
-    this.getDataFromApi();
+    //this.getDataFromApi();
   },
   methods: {
     async getDataFromApi(params = {}) {

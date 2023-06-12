@@ -15,9 +15,10 @@ const actions = {
     return this.$axios.get(`/api/complaints`, { params })
       .then(result => result.data)
   },
-  async show ({ commit }, params) {
-    await this.$axios.get(`/api/complaints/${params.id}`)
+  show ({ commit }, params) {
+    return this.$axios.get(`/api/complaints/${params.id}`)
       .then(result => result.data)
+      .then(data => data.data)
   },
   update ({ commit }, params) {
     return this.$axios.put(`/api/complaints/${params.id}`, params)

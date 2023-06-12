@@ -75,7 +75,6 @@
                   v-model="filterModel[1]"
                   label="Data de sfarsit"
                   append-icon="mdi-calendar"
-                  rules=""
                   v-bind="attrs"
                   v-on="on"
                   outlined

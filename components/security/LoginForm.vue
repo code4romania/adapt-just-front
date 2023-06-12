@@ -50,8 +50,8 @@ export default {
     twoFactor: false,
     code: null,
     login:{
-      email: 'catalin.iacob@web-group.ro',
-      password: 'password'
+      email: '',
+      password: ''
     },
     loading: false
   }),
@@ -69,7 +69,6 @@ export default {
         await this.$auth.loginWith('laravelSanctum', {
           data: this.login
         });
-        await this.$auth.fetchUser();
         this.$emit('success');
 
       } catch (e) {

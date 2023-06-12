@@ -31,6 +31,7 @@ export default {
     '~/plugins/vue-confirm-dialog.js',
     { src: '~/plugins/helpers/user.js' },
     { src: '~/plugins/helpers/form.js' },
+    { src: '~/plugins/axios.js'}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -1,24 +1,28 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="items"
-    :loading="loading"
-    :page.sync="page"
-    :items-per-page="itemsPerPage"
-    @page-count="pageCount = $event"
+  <ui-table-list
+      :headers="headers"
+      :items="items"
+      :loading="loading"
+      :filters="initialFilters"
+      :sort="initialSort"
+      :items-per-page="itemsPerPage"
+      :totalItems="total"
+      @getDataFromApi="getDataFromApi"
   >
     <template v-slot:item="{ item }">
       <tr>
-        <td>{{ $moment(item.created_at).format('MM/DD/YYYY HH:mm') }}</td>
+        <td>{{ $moment(item.created_at).format('DD-MM-YYYY HH:mm') }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.city }}</td>
         <td>{{ item.location_name }}</td>
-        <td>{{ item.type }}</td>
+        <td>{{ item.type_label }}</td>
         <td style="width: 120px; text-align: right">
           <v-btn
             plain
             text
-            :to="`/complaints/${item.id}/view`"
+            :to="`/admin/complaints/${item.id}/view`"
+            class="text-none"
+            color="primary"
           >
             Vezi raportare
           </v-btn>
@@ -28,7 +32,7 @@
     <template v-slot:no-data>
       Empty list
     </template>
-  </v-data-table>
+  </ui-table-list>
 </template>
 
 <script>
@@ -38,13 +42,63 @@ export default {
     loading: false,
     page: 1,
     pageCount: 0,
+    total: 0,
+    initialFilters: [],
+    initialSort: {},
     itemsPerPage: 10,
     headers: [
-      {text: 'Data', value: 'created_at'},
-      {text: 'Nume', value: 'name'},
-      {text: 'Oras', value: 'city'},
-      {text: 'Centru', value: 'location_name'},
-      {text: 'Tip raportare', value: 'type'},
+      {
+        text: 'Data',
+        value: 'created_at',
+        filter: {
+          type: 'date'
+        }
+      },
+      {
+        text: 'Nume',
+        value: 'name',
+        sortable: true,
+        filter: {
+          type: 'string'
+        }
+      },
+      {
+        text: 'Oras',
+        value: 'city',
+        sortable: true,
+        filter: {
+          type: 'string'
+        }
+      },
+      {
+        text: 'Centru',
+        value: 'location_name',
+        sortable: true,
+        filter: {
+          type: 'string'
+        }
+      },
+      {
+        text: 'Tip raportare',
+        value: 'type',
+        filter: {
+          type: 'select',
+          options: [
+            {
+              text: 'Abuz',
+              value: 'hurt'
+            },
+            {
+              text: 'Cerere relocare',
+              value: 'move'
+            },
+            {
+              text: 'Cerere reexaminare',
+              value: 'evaluation'
+            }
+          ]
+        }
+      },
       {text: 'Actions', value: false},
     ],
     items: [],
@@ -56,12 +110,21 @@ export default {
     this.getDataFromApi();
   },
   methods: {
-    async getDataFromApi() {
+    async getDataFromApi(params = {}) {
       this.loading = true
-      await this.$store.dispatch('complaints/get', {})
-        .then((data) => {
-          this.items = data.data;
-        })
+
+      let data = { ...params }
+
+      if (params.itemsPerPage !== -1) {
+        data.page_size = params.itemsPerPage
+      }
+      delete data.itemsPerPage
+
+      await this.$store.dispatch('complaints/get', data)
+          .then((data) => {
+            this.items = data.data;
+            this.total = data?.meta?.total;
+          })
 
       this.loading = false;
     }

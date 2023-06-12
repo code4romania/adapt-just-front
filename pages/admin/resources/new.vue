@@ -3,7 +3,7 @@
     <template #navigation>
       <ui-form-back-btn to="/admin/articles"/>
     </template>
-    <template #title>Adaugare articol nou </template>
+    <template #title>Adaugare resursa de sprijin </template>
     <template #workspace>
       <v-row>
         <v-col>

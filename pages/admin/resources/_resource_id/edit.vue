@@ -1,9 +1,9 @@
 <template>
   <dashboard-page>
     <template #navigation>
-      <ui-form-back-btn to="/admin/articles"/>
+      <ui-form-back-btn to="/admin/resources"/>
     </template>
-    <template #title>Moficiare articol</template>
+    <template #title>Moficiare resursa de sprijin</template>
     <template #actions>
     </template>
     <template #workspace>
@@ -14,13 +14,12 @@
             type="card"
             v-if="loading"
           ></v-skeleton-loader>
-          <articles-form
+          <resources-form
             v-else
-            :article="article"
+            :resource="resource"
             @success="onSuccess" />
         </v-col>
       </v-row>
-
     </template>
   </dashboard-page>
 </template>
@@ -30,7 +29,7 @@ import {mapState} from "vuex";
 export default {
   layout: 'dashboard',
   meta: {
-    permission: 'Update - articles',
+    permission: 'Update - resources',
   },
   data() {
     return {
@@ -38,16 +37,16 @@ export default {
     }
   },
   computed:{
-    ...mapState('articles', ['article'])
+    ...mapState('resources', ['resource'])
   },
   async fetch() {
     this.loading = true
-    await this.$store.dispatch('articles/show', {id: this.$route.params.article_id});
+    await this.$store.dispatch('resources/show', {id: this.$route.params.resource_id});
     this.loading = false
   },
   methods:{
     onSuccess(){
-      this.$router.push('/admin/articles')
+      this.$router.push('/admin/resources')
     }
   }
 }

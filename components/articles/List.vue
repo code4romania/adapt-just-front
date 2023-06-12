@@ -1,5 +1,5 @@
 <template>
-  <table-list
+  <ui-table-list
     :headers="headers"
     :items="items"
     :loading="loading"
@@ -12,7 +12,10 @@
     <template v-slot:item="{ item }">
       <tr>
         <td>{{ item.name }}</td>
-        <td>{{ item.status }}</td>
+        <td>
+          <v-chip v-if="item.status === 'active'" small color="success"> &#9679; Publicat</v-chip>
+          <v-chip v-else small>&#9679; Draft</v-chip>
+        </td>
         <td>{{ item.published_at ? $moment(item.published_at).format('DD-MM-YYYY HH:mm') : ''}}</td>
         <td style="width: 120px; text-align: right">
           <v-menu
@@ -74,14 +77,12 @@
     <template v-slot:no-data>
       Empty list
     </template>
-  </table-list>
+  </ui-table-list>
 </template>
 
 <script>
 
-import TableList from "@/components/ui/TableList";
 export default {
-  components: {TableList},
   data: () => ({
     loading: false,
     page: 1,
@@ -131,7 +132,7 @@ export default {
 
   },
   mounted() {
-    this.getDataFromApi();
+    //this.getDataFromApi();
   },
   methods: {
     async getDataFromApi(params = {}) {
@@ -148,15 +149,6 @@ export default {
         .then((data) => {
           this.items = data.data;
           this.total = data?.meta?.total;
-        })
-
-      this.loading = false;
-    },
-    async getDataFromApii() {
-      this.loading = true
-      await this.$store.dispatch('articles/get', {})
-        .then((data) => {
-          this.items = data.data;
         })
 
       this.loading = false;

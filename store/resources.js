@@ -1,7 +1,9 @@
 const initialState = {
   resource: {
+    type: 'organisation',
     name: '',
     status: 'draft',
+    phone: '',
     content: '',
     short_content: '',
     published_at: '',
@@ -25,23 +27,23 @@ const mutations = {
 
 const actions = {
   async get ({ commit }, params) {
-    return this.$axios.get(`/api/articles`, { params })
+    return this.$axios.get(`/api/resources`, { params })
       .then(result => result?.data)
   },
   async show ({ commit }, params) {
-    return this.$axios.get(`/api/articles/${params.id}`)
+    return this.$axios.get(`/api/resources/${params.id}`)
       .then((res) => {
           commit('setResource', res.data.data)
       })
   },
   create ({ commit }, params) {
-    return this.$axios.post(`/api/articles`, params)
+    return this.$axios.post(`/api/resources`, params)
   },
   update ({ commit }, params) {
-    return this.$axios.put(`/api/articles/${params.id}`, params)
+    return this.$axios.put(`/api/resources/${params.id}`, params)
   },
   delete ({ commit }, params) {
-    return this.$axios.delete(`/api/articles/${params.id}`)
+    return this.$axios.delete(`/api/resources/${params.id}`)
   }
 }
 
