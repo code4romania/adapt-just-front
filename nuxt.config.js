@@ -54,10 +54,9 @@ export default {
   ssr: false,
   auth: {
     redirect: false,
-    cookie: {
-      options: {
-        secure: true
-      }
+    cookie: false,
+    token: {
+      global: true
     },
     strategies: {
       laravelSanctum: {
@@ -81,7 +80,8 @@ export default {
         },
         user: {
           property: 'data'
-        }
+        },
+        cookie: false
       }
     }
   },
