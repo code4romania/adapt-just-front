@@ -54,14 +54,13 @@ export default {
   ssr: false,
   auth: {
     redirect: false,
-    cookie: false,
-    token: {
-      global: true
-    },
     strategies: {
-      laravelSanctum: {
-        provider: 'laravel/sanctum',
-        url: process.env.API_URL,
+      local: {
+        token: {
+          property: 'token',
+          global: true,
+          type: 'Bearer'
+        },
         endpoints: {
           login: {
             url: '/api/login',
@@ -80,9 +79,8 @@ export default {
         },
         user: {
           property: 'data'
-        },
-        cookie: false
-      }
+        }
+      },
     }
   },
   axios: {

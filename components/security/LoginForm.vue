@@ -66,7 +66,7 @@ export default {
         return false;
       }
       try {
-        await this.$auth.loginWith('laravelSanctum', {
+        await this.$auth.loginWith('local', {
           data: this.login
         });
         this.$emit('success');
