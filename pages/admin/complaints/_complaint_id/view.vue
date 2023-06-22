@@ -32,7 +32,6 @@
                       <v-icon v-if="editMode" @click="saveRegisterNumber">mdi-check</v-icon>
                   </template>
                 </v-text-field>
-                <div>SRP 15/22.10.2023</div>
               </v-col>
               <v-col cols="12" md="6">
                 <label class="complaint-label">Nume si prenume</label>
