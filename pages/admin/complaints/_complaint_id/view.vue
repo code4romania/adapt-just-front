@@ -4,36 +4,51 @@
       <v-col cols="12" md="10">
         <ui-form-card v-if="!loading">
           <template #title>
-            Raportare abuz
+            <span v-if="complaint?.type === 'hurt'">Raportare abuz</span>
+            <span v-if="complaint?.type === 'move'">Cerere relocare</span>
+            <span v-if="complaint?.type === 'evaluation'">Cerere reexaminare</span>
           </template>
           <template #subtitle>
-            16.06.2023
+            {{ complaint.created_at }}
           </template>
           <template>
             <v-row>
               <v-col cols="12" md="6">
                 <label class="complaint-label">Pentru cine a fost raportat</label>
-                <div>Pentru propria persoana</div>
+                <div v-if="complaint.victim === 'me'">Pentru propria persoana</div>
+                <div v-if="complaint.victim === 'other'">Pentru altcineva</div>
               </v-col>
               <v-col cols="12" md="6">
                 <label class="complaint-label">Numar de inregistrare plangere</label>
+                <v-text-field
+                    outlined
+                    dense
+                    v-model="complaint.register_number"
+                    :disabled="!editMode"
+                    :loading="loadingSaveRegisterNumber"
+                >
+                  <template #append>
+                      <v-icon v-if="!editMode" @click="editMode = true">mdi-pencil</v-icon>
+                      <v-icon v-if="editMode" @click="saveRegisterNumber">mdi-check</v-icon>
+                  </template>
+                </v-text-field>
                 <div>SRP 15/22.10.2023</div>
               </v-col>
               <v-col cols="12" md="6">
                 <label class="complaint-label">Nume si prenume</label>
-                <div>Emilia Eminovici</div>
+                <div>{{ complaint.name }}</div>
               </v-col>
               <v-col cols="12" md="6">
                 <label class="complaint-label">Oras</label>
-                <div>Bacau</div>
+                <div>{{  complaint.city_name }} {{ complaint.county_name }}</div>
               </v-col>
               <v-col cols="12" md="6">
                 <label class="complaint-label">Centru</label>
-                <div>Centrul de zi “Ioana Stoenescu”</div>
+                <div>{{ complaint.location_name }}</div>
               </v-col>
               <v-col cols="12" md="6">
                 <label class="complaint-label">Tip centru</label>
-                <div> Centru de zi</div>
+                <div>{{ complaint?.location?.type }}</div>
               </v-col>
               <v-col cols="12">
                 <label class="complaint-label">Email transmis</label>
@@ -49,7 +64,9 @@
               </v-col>
               <v-col cols="12">
                 <label class="complaint-label">Atasamente</label>
-                <v-list one-line class="attachment-list">
+                <div v-if="complaint.proof_type === 'later' ">Am dovezi si le pot oferi la cerere</div>
+                <div v-if="complaint.proof_type === 'no'">Nu am dovezi</div>
+                <v-list v-if="complaint.proof_type === 'yes'" one-line class="attachment-list">
                   <template v-for="(item, index) in complaint?.uploads">
                     <v-list-item>
                       <v-list-item-content>
@@ -99,7 +116,9 @@ export default {
   data() {
     return {
       loading: true,
-      complaint: {}
+      loadingSaveRegisterNumber: false,
+      complaint: {},
+      editMode: false
     }
   },
   async fetch() {
@@ -113,7 +132,23 @@ export default {
     this.loading = false
   },
   methods:{
+    async saveRegisterNumber() {
+      this.loadingSaveRegisterNumber = true
+      this.editMode = false;
+      try {
+        await this.$store.dispatch('complaints/update', {
+          id : this.complaint.id,
+          register_number: this.complaint.register_number
+        })
+        const snack = { color: 'success', message:  'Numarul de inregistrare a fost actualizat cu succes'}
+        this.$store.commit('snackbar/setSnack', snack)
 
+      } catch (e) {
+        this.$form.handleError(e)
+      }
+
+      this.loadingSaveRegisterNumber = false
+    }
   }
 }
 </script>
