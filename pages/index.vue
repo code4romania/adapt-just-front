@@ -25,6 +25,9 @@
 <script>
 export default {
   auth: false,
+  head: {
+    titleTemplate: null
+  },
   created() {
     setInterval(this.getNow, 1000);
   },
