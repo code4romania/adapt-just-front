@@ -4,8 +4,8 @@ import webpack from "webpack";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - adapt-just-client',
-    title: 'adapt-just-client',
+    titleTemplate: '%s - Ceasul Bun',
+    title: 'Ceasul Bun',
     htmlAttrs: {
       lang: 'en'
     },
