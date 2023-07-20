@@ -47,10 +47,12 @@
                         <div>{{ complaint.name }}</div>
                       </v-col>
                       <v-col cols="12" md="6">
+
                         <label class="complaint-label">CNP</label>
                         <div>{{ complaint.cnp }}</div>
                       </v-col>
                       <v-col cols="12" md="6">
+
                         <label class="complaint-label">Oras</label>
                         <div>{{  complaint.city_name }} {{ complaint.county_name }}</div>
                       </v-col>
@@ -71,10 +73,68 @@
                       </v-col>
                       <v-col cols="12">
                         <div style="border: 1px solid #dddddd; border-radius: 10px" class="pa-4">
-                          <label class="complaint-label">Email transmis</label>
                           <div v-html="complaint.email_sent">
                           </div>
+                          <div v-if="complaint.victim === 'me'" class="mb-4 mt-4">
+                            <div class="mb-4">
+                              Subsemnata/Subsemnatul {{ complaint.name }}
+                              <span v-if="complaint.county_name || complaint.location_name">, mă aflu în</span>
+                              <span v-if="complaint.county_name">{{ complaint.county_name }}</span>
+                              <span v-if="complaint.location_name">în {{ complaint.location_name }}</span>
+                              , și declar că:
+                            </div>
 
+                            <div v-if="complaint.type === 'hurt'" class="mb-4">
+                              <ul>
+                                <li v-for="d in complaint.detail_labels">{{ d }}</li>
+                              </ul>
+                            </div>
+
+                            <div v-if="complaint.type === 'move'" class="mb-4">
+                              <ul>
+                                <li>
+                                  Vreau sa fiu mutat/a la
+                                  <span v-if="complaint.location_to_name">{{ complaint.location_to_name }}</span>
+                                  <span v-else>alt centru</span>
+                                </li>
+                              </ul>
+                              <div class="mt-4" v-if="complaint.reason">Motivul pentru care vreau să mă mut este: <strong>{{ complaint.reason }}</strong></div>
+                            </div>
+
+                            <div v-if="complaint.type === 'evaluation'" class="mb-4">
+                              <ul>
+                                <li>Vreau să fiu evaluat/ă din nou la judecător</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div v-if="complaint.victim === 'other'" class="mb-4 mt-4">
+                            <div>
+                              Subsemnata/Subsemnatul {{ complaint.name }}, declar ca
+                              <span v-if="complaint.county_name">{{ complaint.county_name }} </span>
+                              <span v-if="complaint.location_name">în {{ complaint.location_name }}</span>
+                              s-au întâmplat următoarele
+                            </div>
+                            <div>
+                              <ul>
+                                <li>{{ complaint.reason }}</li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          <div class="mb-4">
+                            Solicit ca datele mele personale să nu devină publice ca urmare a acestei plângeri, a cărei soluționare o cer.
+                          </div>
+
+                          <div v-if="complaint.proof_type === 'later' || complaint.proof_type === 'yes'" class="mb-4">
+                            <label class="complaint-label">Atasamente</label>
+                            <div v-if="complaint.proof_type === 'later'">Am dovezi si le pot oferi la cerere</div>
+                            <div v-if="complaint.proof_type === 'yes'">
+                              <div v-for="item in complaint.uploads">
+                                <a :href="item.dataUrl">{{item.name}}</a>
+                              </div>
+
+                            </div>
+                          </div>
                           <div>
                             <label class="complaint-label">Emailul a fost transmis la data {{ complaint.sent_at }} catre</label>
                             <div>
