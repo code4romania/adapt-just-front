@@ -47,6 +47,12 @@
                         <div>{{ complaint.name }}</div>
                       </v-col>
                       <v-col cols="12" md="6">
+
+                        <label class="complaint-label">CNP</label>
+                        <div>{{ complaint.cnp }}</div>
+                      </v-col>
+                      <v-col cols="12" md="6">
+
                         <label class="complaint-label">Oras</label>
                         <div>{{  complaint.city_name }} {{ complaint.county_name }}</div>
                       </v-col>
@@ -67,8 +73,8 @@
                       </v-col>
                       <v-col cols="12">
                         <div style="border: 1px solid #dddddd; border-radius: 10px" class="pa-4">
-                          <label class="complaint-label">Email transmis</label>
-
+                          <div v-html="complaint.email_sent">
+                          </div>
                           <div v-if="complaint.victim === 'me'" class="mb-4 mt-4">
                             <div class="mb-4">
                               Subsemnata/Subsemnatul {{ complaint.name }}
@@ -129,7 +135,6 @@
 
                             </div>
                           </div>
-
                           <div>
                             <label class="complaint-label">Emailul a fost transmis la data {{ complaint.sent_at }} catre</label>
                             <div>
