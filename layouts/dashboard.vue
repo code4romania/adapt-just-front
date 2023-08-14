@@ -29,7 +29,7 @@
                   class="text-none"
                   to="/admin/complaints"
                 >
-                  Raportari
+                  Raportări
                 </v-btn>
                 <v-btn
                   text

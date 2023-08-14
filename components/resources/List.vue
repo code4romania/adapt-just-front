@@ -147,7 +147,7 @@ export default {
           type: 'date'
         }
       },
-      {text: 'Actions', value: false},
+      {text: 'Acțiuni', value: false},
     ],
     items: [],
   }),

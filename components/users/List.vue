@@ -101,7 +101,7 @@ export default {
       {text: 'Prenume', value: 'last_name'},
       {text: 'Email', value: 'email'},
       {text: 'Created', value: 'created_at'},
-      {text: 'Actions', value: false},
+      {text: 'Acțiuni', value: false},
     ],
     items: [],
   }),
