@@ -1,6 +1,6 @@
 <template>
   <dashboard-page>
-    <template #title>Raportari</template>
+    <template #title>Raportări</template>
     <template #actions>
 <!--      <v-btn class="text-none pl-2" color="primary">-->
 <!--        <v-icon>mdi-download</v-icon>-->

@@ -63,7 +63,7 @@ export default {
         }
       },
       {
-        text: 'Oras',
+        text: 'Oraș',
         value: 'city',
         sortable: true,
         filter: {
@@ -99,7 +99,7 @@ export default {
           ]
         }
       },
-      {text: 'Actions', value: false},
+      {text: 'Acțiuni', value: false},
     ],
     items: [],
   }),

@@ -6,10 +6,10 @@
     <ValidationObserver ref="form" v-slot="{ invalid, validated, handleSubmit, validate }">
       <v-card class="elevation-12 setup-password-card" width="400px">
         <v-card-text class="pa-0">
-          <v-img height="70px" contain src="/images/layout/logo.png"/>
-          <div class="text-center font-weight-bold">
+          <v-img height="100px" contain src="/images/layout/ceasul-cel-bun-logo.svg"/>
+          <div class="text-center font-weight-bold mt-2">
             &#9679;
-            seteaza o parola
+            am uitat parola
             &#9679;
           </div>
           <v-form class="mt-6">

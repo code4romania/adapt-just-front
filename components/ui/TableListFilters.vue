@@ -44,7 +44,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="filterModel[0]"
-                  label="Data de start"
+                  label="Dată de început"
                   append-icon="mdi-calendar"
                   v-bind="attrs"
                   v-on="on"
@@ -73,7 +73,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="filterModel[1]"
-                  label="Data de sfarsit"
+                  label="Dată de sfărșit"
                   append-icon="mdi-calendar"
                   v-bind="attrs"
                   v-on="on"
@@ -95,7 +95,7 @@
       </v-col>
       <v-col cols="auto">
         <div class="mb-2">
-          <v-btn class="ml-4" min-width="100px" color="primary" @click="$emit('changeFilter', filterModel)">Aplica</v-btn>
+          <v-btn class="ml-4" min-width="100px" color="primary" @click="$emit('changeFilter', filterModel)">Aplică</v-btn>
         </div>
 <!--        <div>-->
 <!--          <v-btn class="ml-4" min-width="100px" outlined @click="$emit('changeFilter', {})">Sterge</v-btn>-->

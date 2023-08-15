@@ -52,8 +52,7 @@
                         <div>{{ complaint.cnp }}</div>
                       </v-col>
                       <v-col cols="12" md="6">
-
-                        <label class="complaint-label">Oras</label>
+                        <label class="complaint-label">Oraș</label>
                         <div>{{  complaint.city_name }} {{ complaint.county_name }}</div>
                       </v-col>
                       <v-col cols="12" md="6">
@@ -139,7 +138,7 @@
                             <label class="complaint-label">Emailul a fost transmis la data {{ complaint.sent_at }} catre</label>
                             <div>
                               <div>
-                                <label>Denumire intitutii: </label>
+                                <label>Denumirea instituții: </label>
                                 <ul>
                                   <li v-for="(sti,index) in complaint.sent_to_institutions">
                                     {{ sti }}
