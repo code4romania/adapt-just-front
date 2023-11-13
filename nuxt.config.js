@@ -1,4 +1,3 @@
-import colors from 'vuetify/es5/util/colors'
 import webpack from "webpack";
 
 export default {
@@ -106,7 +105,7 @@ export default {
           // warning: colors.amber.base,
           // error: colors.deepOrange.accent4,
           // success: colors.green.accent3,
-          anchor: '#8c9eff'
+          anchor: '#8c9eff',
         }
       }
     }
@@ -119,8 +118,10 @@ export default {
       Roboto: {
         wght: [400]
       },
-      Inter: true,
-      "Titillium Web" : true
+      Inter: [400, 500, 600, 700, 800],
+      "Titillium Web" : true,
+      Montserrat: [700],
+      'Encode Sans': [400, 700],
     }
   },
 
