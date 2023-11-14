@@ -1,11 +1,11 @@
 <template>
-  <div class="complaint-location">
+  <div>
     <form-stepper
       :step="2"
-      :steps="6"
+      :steps="steps"
     />
 
-    <div class="title-container">
+    <div class="title-container form-title">
       <page-title>
         Unde te afli acum?
       </page-title>
@@ -15,7 +15,7 @@
       </span>
     </div>
 
-    <div class="form-content">
+    <div class="form-container">
       <div class="d-flex align-center">
         <complaint-location-button
           :location="location"
@@ -26,13 +26,11 @@
       <record-text />
     </div>
 
-    <div class="actions-container">
-      <back-button @click="handleBack" />
-      <next-button
-        :disabled="!nextEnabled"
-        @click="$emit('next')"
-      />
-    </div>
+    <form-actions
+      :next-enabled="nextEnabled"
+      @next="$emit('next')"
+      @back="$emit('back')"
+    />
 
     <complaint-locations-modal
       :location="location"
@@ -44,24 +42,11 @@
 
 <script>
 
-import PageTitle from '/components/shared/text/PageTitle'
-import RecordText from '/components/shared/text/RecordText'
-import FormStepper from '/components/shared/form/FormStepper'
-import BackButton from '/components/shared/buttons/BackButton'
-import NextButton from '/components/shared/buttons/NextButton'
-import RecordButton from '/components/shared/buttons/RecordButton'
-
 import ComplaintLocationsModal from './ComplaintLocationsModal'
 import ComplaintLocationButton from './ComplaintLocationButton'
 
 export default {
   components: {
-    PageTitle,
-    RecordText,
-    NextButton,
-    BackButton,
-    FormStepper,
-    RecordButton,
     ComplaintLocationsModal,
     ComplaintLocationButton,
   },
@@ -69,6 +54,10 @@ export default {
     location: {
       type: Object,
       default: null,
+    },
+    steps: {
+      type: Number,
+      default: 0,
     },
   },
   data() {
@@ -78,40 +67,9 @@ export default {
   },
   computed: {
     nextEnabled() {
-      return !!this.location;
-    }
-  },
-  methods: {
-    handleBack() {
-      this.$store.commit('complaint/setLocation', null);
-      this.$emit('back');
+      return !!this.location
     }
   },
 }
 
 </script>
-
-<style lang="scss">
-
-.complaint-location {
-  .title-container {
-    margin-top: 72px !important;
-
-    .subtitle {
-      color: $gray700;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      text-transform: uppercase;
-      font-variant: all-small-caps;
-      font-family: Inter, sans-serif;
-    }
-  }
-
-  .form-content {
-    margin-top: 48px;
-  }
-}
-
-</style>

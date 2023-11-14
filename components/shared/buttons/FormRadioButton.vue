@@ -2,36 +2,27 @@
   <v-btn
     outlined
     color="#FFF"
-    class="form-button"
     :class="{ active }"
-    :disabled="disabled"
+    class="form-radio-button"
     @click="$emit('click')"
   >
-    <v-img
-      v-if="icon"
-      :src="icon"
-      max-width="100px"
-    />
-
     <div class="button-content">
       <span class="d-block button-title">
         {{ title }}
       </span>
-      <div v-if="subtitle" class="subtitle-container">
+
+      <div v-if="subtitle">
         <span class="d-block button-subtitle">
           {{ subtitle }}
         </span>
       </div>
     </div>
 
-    <div>
-      <v-img
-        src="/images/website/icons/form-arrow-right.svg"
-        width="43px"
-        height="43px"
-        class="ml-3"
-      />
-    </div>
+    <div v-if="!active" class="check" />
+    <svg v-else xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
+      <rect x="0.0830078" width="31.9584" height="32" rx="15.9792" fill="#D97706"/>
+      <circle cx="16.083" cy="16" r="6" fill="white"/>
+    </svg>
   </v-btn>
 </template>
 
@@ -44,19 +35,11 @@ export default {
       required: true,
     },
     subtitle: {
-      type: String,
-      required: false,
-    },
-    icon: {
+      default: '',
       type: String,
       required: false,
     },
     active: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    disabled: {
       type: Boolean,
       required: false,
       default: false,
@@ -68,14 +51,13 @@ export default {
 
 <style lang="scss">
 
-.form-button {
+.form-radio-button {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 6px;
   height: auto !important;
   background-color: #FFF;
   border: 1px solid $yellow600;
-  padding: 28px 52px 28px 48px !important;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  padding: 19px 30px 19px 30px !important;
 
   &.active {
     background-color: $yellow50;
@@ -97,7 +79,7 @@ export default {
       flex: 1;
       display: flex;
       overflow: hidden;
-      margin-left: 45px;
+      margin-left: 12px;
       flex-direction: column;
       align-items: flex-start;
 
@@ -105,32 +87,30 @@ export default {
         color: $gray900;
         font-size: 24px;
         font-weight: 700;
-        line-height: 32px;
+        line-height: 60px;
         font-style: normal;
-        letter-spacing: -0.12px;
         text-transform: uppercase;
         font-family: Inter, sans-serif;
       }
 
-      .subtitle-container {
-        width: 100%;
-        text-align: left;
-
-        .button-subtitle {
-          color: #4B5563;
-          margin-top: 16px;
-          font-size: 20px;
-          font-weight: 700;
-          overflow: hidden;
-          line-height: 32px;
-          font-style: normal;
-          white-space: nowrap;
-          letter-spacing: -0.1px;
-          text-overflow: ellipsis;
-          text-transform: uppercase;
-          font-family: Inter, sans-serif;
-        }
+      .button-subtitle {
+        color: #4B5563;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 60px;
+        font-style: normal;
+        letter-spacing: -0.1px;
+        text-transform: uppercase;
+        font-family: Inter, sans-serif;
       }
+    }
+
+    .check {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #FFF;
+      border: 1px solid $gray300;
     }
   }
 }

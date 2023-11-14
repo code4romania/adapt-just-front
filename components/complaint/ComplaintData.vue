@@ -10,26 +10,12 @@
       Prin mesajul tău, vom spune autorităților <span style="font-weight: 700;">să aibă grijă</span><br /> de datele tale pentru ca tu să fii în siguranță.
     </p>
 
-    <div class="actions-container">
-      <back-button @click="$emit('back')" />
-      <next-button @click="$emit('next')" />
-    </div>
+    <form-actions
+      @next="$emit('next')"
+      @back="$emit('back')"
+    />
   </div>
 </template>
-
-<script>
-
-import BackButton from '/components/shared/buttons/BackButton'
-import NextButton from '/components/shared/buttons/NextButton'
-
-export default {
-  components: {
-    BackButton,
-    NextButton,
-  },
-}
-
-</script>
 
 <style lang="scss">
 

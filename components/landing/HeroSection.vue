@@ -64,12 +64,10 @@
 
 <script>
 
-import PageTitle from '/components/shared/text/PageTitle'
 import NextButton from '/components/shared/buttons/NextButton'
 
 export default {
   components: {
-    PageTitle,
     NextButton,
   },
 }

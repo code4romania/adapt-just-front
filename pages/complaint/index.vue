@@ -12,6 +12,7 @@
       <complaint-type
         v-if="section === 'type'"
         :type="type"
+        :victim="victim"
         @back="section = 'victim'"
         @next="section = 'disclaimer'"
       />
@@ -31,12 +32,14 @@
       <complaint-name
         v-if="section === 'name'"
         :name="name"
+        :steps="steps"
         @back="section = 'data'"
         @next="section = 'location'"
       />
 
       <complaint-location
         v-if="section === 'location'"
+        :steps="steps"
         :location="location"
         @back="section = 'name'"
         @next="section = 'details'"
@@ -44,6 +47,7 @@
 
       <complaint-details
         v-if="section === 'details'"
+        :steps="steps"
         :details="details"
         @back="section = 'location'"
         @next="section = 'proof'"
@@ -51,6 +55,8 @@
 
       <complaint-proof
         v-if="section === 'proof'"
+        :steps="steps"
+        :proof-type="proofType"
         @back="section = 'details'"
       />
     </div>
@@ -59,7 +65,7 @@
 
 <script>
 
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import HomeButton from '/components/shared/buttons/HomeButton'
 import ComplaintType from '/components/complaint/ComplaintType'
 import ComplaintData from '/components/complaint/ComplaintData'
@@ -98,14 +104,19 @@ export default {
       'name',
       'location',
       'details',
+      'proofType',
     ]),
+    ...mapGetters('complaint', ['getSteps']),
+    steps() {
+      return this.getSteps()
+    },
     showHomeButton() {
-      const sections = ['victim', 'type', 'disclaimer', 'data'];
-      return sections.includes(this.section);
+      const sections = ['victim', 'type', 'disclaimer', 'data']
+      return sections.includes(this.section)
     }
   },
   async mounted() {
-    await this.$store.dispatch('complaint/getLocations');
+    await this.$store.dispatch('complaint/getLocations')
   },
 }
 
@@ -123,6 +134,21 @@ export default {
 
     .title-container {
       margin-top: 40px;
+
+      &.form-title {
+        margin-top: 72px !important;
+      }
+
+      .subtitle {
+        color: $gray700;
+        font-size: 24px;
+        font-weight: 500;
+        font-style: normal;
+        line-height: normal;
+        text-transform: uppercase;
+        font-variant: all-small-caps;
+        font-family: Inter, sans-serif;
+      }
     }
 
     .form-container {
@@ -137,7 +163,7 @@ export default {
       }
     }
 
-    .actions-container {
+    .form-actions {
       display: flex;
       margin-top: 80px;
       align-items: center;

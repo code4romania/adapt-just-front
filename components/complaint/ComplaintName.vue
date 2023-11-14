@@ -1,11 +1,11 @@
 <template>
-  <div class="complaint-name">
+  <div>
     <form-stepper
       :step="1"
-      :steps="6"
+      :steps="steps"
     />
 
-    <div class="title-container">
+    <div class="title-container form-title">
       <page-title>
         Cum te cheamă?
       </page-title>
@@ -15,7 +15,7 @@
       </span>
     </div>
 
-    <div class="form-content">
+    <div class="form-container">
       <div class="d-flex align-center">
         <form-text-input
           :value="nameText"
@@ -27,40 +27,25 @@
       <record-text />
     </div>
 
-    <div class="actions-container">
-      <back-button @click="handleBack" />
-      <next-button
-        :disabled="!nextEnabled"
-        @click="submit"
-      />
-    </div>
+    <form-actions
+      :next-enabled="nextEnabled"
+      @next="submit"
+      @back="$emit('back')"
+    />
   </div>
 </template>
 
 <script>
 
-import PageTitle from '/components/shared/text/PageTitle'
-import RecordText from '/components/shared/text/RecordText'
-import FormStepper from '/components/shared/form/FormStepper'
-import BackButton from '/components/shared/buttons/BackButton'
-import NextButton from '/components/shared/buttons/NextButton'
-import FormTextInput from '/components/shared/form/FormTextInput'
-import RecordButton from '/components/shared/buttons/RecordButton'
-
 export default {
-  components: {
-    PageTitle,
-    RecordText,
-    BackButton,
-    NextButton,
-    FormStepper,
-    RecordButton,
-    FormTextInput,
-  },
   props: {
     name: {
       type: String,
       default: '',
+    },
+    steps: {
+      type: Number,
+      default: 0,
     },
   },
   data() {
@@ -70,44 +55,15 @@ export default {
   },
   computed: {
     nextEnabled() {
-      return !!this.nameText;
+      return !!this.nameText
     }
   },
   methods: {
-    handleBack() {
-      this.$store.commit('complaint/setName', '');
-      this.$emit('back');
-    },
     submit() {
-      this.$store.commit('complaint/setName', this.nameText);
-      this.$emit('next');
+      this.$store.commit('complaint/setName', this.nameText)
+      this.$emit('next')
     }
   }
 }
 
 </script>
-
-<style lang="scss">
-
-.complaint-name {
-  .title-container {
-    margin-top: 72px !important;
-
-    .subtitle {
-      color: $gray700;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      text-transform: uppercase;
-      font-variant: all-small-caps;
-      font-family: Inter, sans-serif;
-    }
-  }
-
-  .form-content {
-    margin-top: 48px;
-  }
-}
-
-</style>

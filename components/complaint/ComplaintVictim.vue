@@ -1,5 +1,5 @@
 <template>
-  <div class="complaint-victim">
+  <div>
     <div class="title-container">
       <page-title>
         Pentru cine vrei să ceri ajutor?
@@ -32,14 +32,8 @@
 
 <script>
 
-import PageTitle from '/components/shared/text/PageTitle'
-import FormButton from '/components/shared/buttons/FormButton'
 
 export default {
-  components: {
-    PageTitle,
-    FormButton,
-  },
   props: {
     victim: {
       type: String,

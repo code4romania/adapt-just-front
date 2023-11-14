@@ -52,7 +52,13 @@ export default {
   },
   methods: {
     handleChange(location) {
-      this.$store.commit('complaint/setLocation', location);
+      if (location.id === this.location?.id) {
+        this.$store.commit('complaint/setLocation', null)
+        return
+      }
+
+      this.$store.commit('complaint/setLocation', location)
+      this.$emit('change')
     }
   }
 }

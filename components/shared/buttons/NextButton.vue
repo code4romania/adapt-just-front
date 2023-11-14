@@ -1,6 +1,7 @@
 <template>
   <v-btn
     class="next-button"
+    :loading="loading"
     :disabled="disabled"
     @click.native="$emit('click')"
   >
@@ -23,6 +24,10 @@ export default {
     text: {
       type: String,
       default: 'Continuă',
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
     disabled: {
       type: Boolean,

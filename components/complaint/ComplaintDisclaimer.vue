@@ -15,32 +15,33 @@
       </div>
     </div>
 
-    <div class="disclaimer-content">
+    <div class="form-container">
       <p class="disclaimer-text">
-        Înainte de a completa reclamația, este important să știi că informațiile pe care le vei furniza vor fi transmise către URMĂTOARELE entități: <span class="font-weight-bold">poliția, parchetul, Consiliul de Monitorizare, Ministerul Sănătății și Centrul Național pentru Sănătate Mintală și Lupta Antidrog.</span>
+        Înainte de a completa reclamația, este important să știi că informațiile pe care le vei furniza vor fi transmise către URMĂTOARELE entități: <span class="font-weight-bold">{{ institutions }}</span>
       </p>
       <p class="disclaimer-text">
         Dacă ai întrebări sau îngrijorări în legătură cu acest proces, te rugăm să ceri ajutorul unei persoane în care ai încredere. Este important să înțelegi că informațiile pe care le furnizezi vor fi tratate cu confidențialitate și respect față de drepturile tale.
       </p>
     </div>
 
-    <div class="actions-container">
-      <back-button @click="$emit('back')" />
-      <next-button @click="$emit('next')" />
-    </div>
+    <form-actions
+      @next="$emit('next')"
+      @back="$emit('back')"
+    />
   </div>
 </template>
 
 <script>
 
-import BackButton from '/components/shared/buttons/BackButton'
-import NextButton from '/components/shared/buttons/NextButton'
+import { mapGetters } from 'vuex'
 
 export default {
-  components: {
-    BackButton,
-    NextButton,
-  },
+  computed: {
+    ...mapGetters('complaint', ['getInstitutions']),
+    institutions() {
+      return this.getInstitutions()
+    },
+  }
 }
 
 </script>
@@ -59,21 +60,17 @@ export default {
     text-transform: uppercase;
     font-family: Inter, sans-serif;
   }
-
-  .disclaimer-content {
-    margin-top: 48px;
     
-    .disclaimer-text {
-      color: $gray900;
-      font-size: 24px;
-      font-weight: 500;
-      line-height: 43px;
-      font-style: normal;
-      margin-bottom: 40px;
-      letter-spacing: -0.12px;
-      text-transform: uppercase;
-      font-family: Inter, sans-serif;
-    }
+  .disclaimer-text {
+    color: $gray900;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 43px;
+    font-style: normal;
+    margin-bottom: 40px;
+    letter-spacing: -0.12px;
+    text-transform: uppercase;
+    font-family: Inter, sans-serif;
   }
 }
 

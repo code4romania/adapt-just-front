@@ -1,11 +1,11 @@
 <template>
-  <div class="complaint-proof">
+  <div>
     <form-stepper
       :step="4"
-      :steps="6"
+      :steps="steps"
     />
 
-    <div class="title-container">
+    <div class="title-container form-title">
       <page-title>
         Ai dovezi?
       </page-title>
@@ -15,48 +15,67 @@
       </span>
     </div>
 
-    <div class="actions-container">
-      <back-button @click="$emit('back')" />
-      <next-button :disabled="true" />
+    <div class="form-container">
+      <div class="button-container">
+        <form-radio-button
+          :active="proofType === 'yes'"
+          title="Da și le pot atașa acum"
+          subtitle="Pot atașa acum dovezile"
+          @click="handleChange('yes')"
+        />
+      </div>
+
+      <div class="button-container">
+        <form-radio-button
+          :active="proofType === 'later'"
+          title="Da și le pot oferi la nevoie"
+          subtitle="Pot oferi dovezile dacă îmi vor fi cerute mai târziu"
+          @click="handleChange('later')"
+        />
+      </div>
+
+      <div class="button-container">
+        <form-radio-button
+          title="Nu am dovezi"
+          :active="proofType === 'no'"
+          @click="handleChange('no')"
+        />
+      </div>
     </div>
+
+    <form-actions
+      :next-enabled="false"
+      @back="$emit('back')"
+      @next="$emit('next')"
+    />
   </div>
 </template>
 
 <script>
 
-import PageTitle from '/components/shared/text/PageTitle'
-import FormStepper from '/components/shared/form/FormStepper'
-import BackButton from '/components/shared/buttons/BackButton'
-import NextButton from '/components/shared/buttons/NextButton'
+import FormRadioButton from '~/components/shared/buttons/FormRadioButton'
 
 export default {
   components: {
-    PageTitle,
-    BackButton,
-    NextButton,
-    FormStepper,
+    FormRadioButton,
   },
-}
-
-</script>
-
-<style lang="scss">
-
-.complaint-proof {
-  .title-container {
-    margin-top: 72px !important;
-
-    .subtitle {
-      color: $gray700;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      text-transform: uppercase;
-      font-variant: all-small-caps;
-      font-family: Inter, sans-serif;
+  props: {
+    steps: {
+      type: Number,
+      default: 0,
+    },
+    proofType: {
+      type: String,
+      default: '',
+    },
+  },
+  methods: {
+    handleChange(proofType) {
+      if (proofType !== this.proofType) {
+        this.$store.commit('complaint/setProofType', proofType)
+      }
     }
   }
 }
 
-</style>
+</script>
