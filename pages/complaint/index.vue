@@ -33,7 +33,16 @@
         v-if="section === 'name'"
         :name="name"
         :steps="steps"
+        @next="section = 'cnp'"
         @back="section = 'data'"
+      />
+
+      <complaint-cnp
+        v-if="section === 'cnp'"
+        :cnp="cnp"
+        :steps="steps"
+        :id-card-upload="idCardUpload"
+        @back="section = 'name'"
         @next="section = 'location'"
       />
 
@@ -41,13 +50,14 @@
         v-if="section === 'location'"
         :steps="steps"
         :location="location"
-        @back="section = 'name'"
+        @back="section = 'cnp'"
         @next="section = 'details'"
       />
 
       <complaint-details
         v-if="section === 'details'"
         :steps="steps"
+        :reason="reason"
         :details="details"
         @back="section = 'location'"
         @next="section = 'proof'"
@@ -57,7 +67,22 @@
         v-if="section === 'proof'"
         :steps="steps"
         :proof-type="proofType"
+        @next="handleProofNext"
         @back="section = 'details'"
+      />
+
+      <complaint-uploads
+        v-if="section === 'uploads'"
+        :steps="steps"
+        :uploads="uploads"
+        @back="section = 'proof'"
+        @next="section = 'preview'"
+      />
+
+      <complaint-preview
+        v-if="section === 'preview'"
+        :steps="steps"
+        @back="handlePreviewBack"
       />
     </div>
   </div>
@@ -67,12 +92,16 @@
 
 import { mapState, mapGetters } from 'vuex'
 import HomeButton from '/components/shared/buttons/HomeButton'
+
+import ComplaintCnp from '/components/complaint/ComplaintCnp'
 import ComplaintType from '/components/complaint/ComplaintType'
 import ComplaintData from '/components/complaint/ComplaintData'
 import ComplaintName from '/components/complaint/ComplaintName'
 import ComplaintProof from '/components/complaint/ComplaintProof'
 import ComplaintVictim from '/components/complaint/ComplaintVictim'
 import ComplaintDetails from '/components/complaint/ComplaintDetails'
+import ComplaintUploads from '/components/complaint/ComplaintUploads'
+import ComplaintPreview from '/components/complaint/ComplaintPreview'
 import ComplaintLocation from '/components/complaint/ComplaintLocation'
 import ComplaintDisclaimer from '/components/complaint/ComplaintDisclaimer'
 
@@ -83,12 +112,15 @@ export default {
   },
   components: {
     HomeButton,
+    ComplaintCnp,
     ComplaintType,
     ComplaintData,
     ComplaintName,
     ComplaintProof,
     ComplaintVictim,
     ComplaintDetails,
+    ComplaintUploads,
+    ComplaintPreview,
     ComplaintLocation,
     ComplaintDisclaimer,
   },
@@ -102,9 +134,13 @@ export default {
       'victim',
       'type',
       'name',
+      'cnp',
+      'idCardUpload',
       'location',
       'details',
+      'reason',
       'proofType',
+      'uploads',
     ]),
     ...mapGetters('complaint', ['getSteps']),
     steps() {
@@ -117,6 +153,22 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch('complaint/getLocations')
+  },
+  methods: {
+    handleProofNext() {
+      if (this.proofType === 'yes') {
+        this.section = 'uploads'
+      } else {
+        this.section = 'preview'
+      }
+    },
+    handlePreviewBack() {
+      if (this.proofType === 'yes') {
+        this.section = 'uploads'
+      } else {
+        this.section = 'proof'
+      }
+    }
   },
 }
 

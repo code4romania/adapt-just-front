@@ -1,7 +1,7 @@
 <template>
   <div>
     <form-stepper
-      :step="2"
+      :step="3"
       :steps="steps"
     />
 

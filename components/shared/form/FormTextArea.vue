@@ -1,12 +1,12 @@
 <template>
-  <v-text-field
+  <v-textarea
     v-model="innerValue"
     flat
     outlined
-    clearable
+    height="200px"
     color="#BDBDBD"
     hide-details="auto"
-    class="form-text-input"
+    class="form-text-area"
     :placeholder="placeholder"
   />
 </template>
@@ -21,8 +21,8 @@ export default {
     },
     placeholder: {
       type: String,
-      default: '',
-    },
+      default: 'Scrie aici...',
+    }
   },
   data() {
     return {
@@ -32,11 +32,11 @@ export default {
   watch: {
     // Handles internal model changes.
     innerValue (newVal) {
-      this.$emit('input', newVal)
+      this.$emit('input', newVal);
     },
     // Handles external model changes.
     value (newVal) {
-      this.innerValue = newVal
+      this.innerValue = newVal;
     }
   },
 }
@@ -45,21 +45,23 @@ export default {
 
 <style lang="scss">
 
-.form-text-input {
-  padding: 9px 13px;
-  border-radius: 6px;
+.form-text-area {
   background: #FFF;
-  border: 1px solid $gray300;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
 
-  input {
-    font-size: 18px;
+  fieldset {
+    border-radius: 6px;
+    border: 1px solid #D1D5DB;
+  }
+
+  textarea {
+    font-size: 20px;
     font-weight: 400;
-    line-height: 28px;
+    line-height: 24px;
     font-style: normal;
     text-transform: uppercase;
-    color: $gray800 !important;
-    font-family: Inter, sans-serif;
+    color: $gray500 !important;
+    font-family: "Encode Sans", sans-serif !important;
   }
 }
 

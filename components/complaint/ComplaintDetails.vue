@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="complaint-details">
     <form-stepper
-      :step="3"
+      :step="4"
       :steps="steps"
     />
 
@@ -62,36 +62,51 @@
           />
         </div>
       </div>
+
+      <div v-else>
+        <form-text-area
+          :value="reason"
+          placeholder="Scrie aici ce altceva s-a întâmplat..."
+          @input="handleReasonChange"
+        />
+
+        <div class="record-container">
+          <record-text />
+          <div class="mt-6">
+            <record-button />
+          </div>
+        </div>
+      </div>
     </div>
 
     <form-actions
       :next-enabled="nextEnabled"
       @back="handleBack"
-      @next="$emit('next')"
+      @next="handleNext"
     />
   </div>
 </template>
 
 <script>
 
-import BackButton from '/components/shared/buttons/BackButton'
-import NextButton from '/components/shared/buttons/NextButton'
 import FormCheckButton from '/components/shared/buttons/FormCheckButton'
 
 export default {
   components: {
-    BackButton,
-    NextButton,
     FormCheckButton,
   },
   props: {
+    steps: {
+      type: Number,
+      default: 0,
+    },
     details: {
       type: Array,
       default: () => [],
     },
-    steps: {
-      type: Number,
-      default: 0,
+    reason: {
+      type: String,
+      default: '',
     },
   },
   data() {
@@ -125,15 +140,47 @@ export default {
 
       this.$store.commit('complaint/setDetails', details)
     },
+    handleReasonChange(value) {
+      this.$store.commit('complaint/setReason', value)
+    },
     handleBack() {
       if (this.showOther) {
+        const details = this.details.filter((item) => item !== 'other')
+
+        this.$store.commit('complaint/setDetails', details)
+        this.$store.commit('complaint/setReason', '')
         this.showOther = false
         return
       }
 
       this.$emit('back')
+    },
+    handleNext() {
+      if (this.showOther) {
+        this.showOther = false
+        return
+      }
+
+      this.$emit('next')
     }
   }
 }
 
 </script>
+
+<style lang="scss">
+
+.complaint-details {
+  .record-container {
+    display: flex;
+    margin-top: 80px;
+    align-items: center;
+    flex-direction: column;
+
+    .record-button {
+      margin-left: 0 !important;
+    }
+  }
+}
+
+</style>

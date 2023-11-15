@@ -122,7 +122,7 @@ export default {
       Inter: [400, 500, 600, 700, 800],
       "Titillium Web" : true,
       Montserrat: [700],
-      'Encode Sans': [400, 700],
+      'Encode Sans': [400, 500, 700],
     }
   },
 

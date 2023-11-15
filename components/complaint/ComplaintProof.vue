@@ -1,7 +1,7 @@
 <template>
   <div>
     <form-stepper
-      :step="4"
+      :step="5"
       :steps="steps"
     />
 
@@ -44,7 +44,7 @@
     </div>
 
     <form-actions
-      :next-enabled="false"
+      :next-enabled="nextEnabled"
       @back="$emit('back')"
       @next="$emit('next')"
     />
@@ -67,6 +67,11 @@ export default {
     proofType: {
       type: String,
       default: '',
+    },
+  },
+  computed: {
+    nextEnabled() {
+      return this.proofType !== ''
     },
   },
   methods: {

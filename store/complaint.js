@@ -76,14 +76,26 @@ const mutations = {
   setName(state, name) {
     state.name = name
   },
+  setCnp(state, cnp) {
+    state.cnp = cnp
+  },
+  setIdCardUpload(state, idCardUpload) {
+    state.idCardUpload = idCardUpload
+  },
   setLocation(state, location) {
     state.location = location
   },
   setDetails(state, details) {
     state.details = details
   },
+  setReason(state, reason) {
+    state.reason = reason
+  },
   setProofType(state, proofType) {
     state.proofType = proofType
+  },
+  setUploads(state, uploads) {
+    state.uploads = uploads
   },
   setLocations(state, locations) {
     state.locations = locations
