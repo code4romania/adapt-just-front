@@ -83,6 +83,20 @@
         v-if="section === 'preview'"
         :steps="steps"
         @back="handlePreviewBack"
+        @next="section = 'signature'"
+      />
+
+      <complaint-signature
+        v-if="section === 'signature'"
+        :steps="steps"
+        :signature="signature"
+        @back="section = 'preview'"
+        @next="section = 'success'"
+      />
+
+      <complaint-success
+        v-if="section === 'success'"
+        :steps="steps"
       />
     </div>
   </div>
@@ -102,7 +116,9 @@ import ComplaintVictim from '/components/complaint/ComplaintVictim'
 import ComplaintDetails from '/components/complaint/ComplaintDetails'
 import ComplaintUploads from '/components/complaint/ComplaintUploads'
 import ComplaintPreview from '/components/complaint/ComplaintPreview'
+import ComplaintSuccess from '/components/complaint/ComplaintSuccess'
 import ComplaintLocation from '/components/complaint/ComplaintLocation'
+import ComplaintSignature from '/components/complaint/ComplaintSignature'
 import ComplaintDisclaimer from '/components/complaint/ComplaintDisclaimer'
 
 export default {
@@ -121,7 +137,9 @@ export default {
     ComplaintDetails,
     ComplaintUploads,
     ComplaintPreview,
+    ComplaintSuccess,
     ComplaintLocation,
+    ComplaintSignature,
     ComplaintDisclaimer,
   },
   data() {
@@ -141,6 +159,7 @@ export default {
       'reason',
       'proofType',
       'uploads',
+      'signature'
     ]),
     ...mapGetters('complaint', ['getSteps']),
     steps() {

@@ -97,12 +97,18 @@ const mutations = {
   setUploads(state, uploads) {
     state.uploads = uploads
   },
+  setSignature(state, signature) {
+    state.signature = signature
+  },
   setLocations(state, locations) {
     state.locations = locations
   },
   setInstitutions(state, institutions) {
     state.institutions = institutions
   },
+  reset(state) {
+    Object.assign(state, initialState)
+  }
 }
 
 const actions = {

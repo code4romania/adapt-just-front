@@ -2,6 +2,7 @@
   <div class="form-actions">
     <back-button @click="$emit('back')" />
     <next-button
+      :text="nextText"
       :loading="nextLoading"
       :disabled="!nextEnabled"
       @click="$emit('next')"
@@ -27,6 +28,10 @@ export default {
     nextLoading: {
       type: Boolean,
       default: false,
+    },
+    nextText: {
+      type: String,
+      default: 'Continuă',
     },
   }
 }
