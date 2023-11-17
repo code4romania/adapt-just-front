@@ -1,7 +1,7 @@
 <template>
   <div class="complaint-preview">
     <form-stepper
-      :step="7"
+      :step="step"
       :steps="steps"
     />
 
@@ -102,6 +102,9 @@ export default {
       'locationTo',
     ]),
     ...mapGetters('complaint', ['getInstitutions']),
+    step() {
+      return this.steps - 2
+    },
     institutions() {
       return this.getInstitutions()
     },

@@ -6,7 +6,7 @@
       <complaint-victim
         v-if="section === 'victim'"
         :victim="victim"
-        @next="section = 'type'"
+        @next="handleVictimNext"
       />
 
       <complaint-type
@@ -19,8 +19,8 @@
 
       <complaint-disclaimer
         v-if="section === 'disclaimer'"
-        @back="section = 'type'"
         @next="section = 'data'"
+        @back="handleDisclaimerBack"
       />
 
       <complaint-data
@@ -49,9 +49,10 @@
       <complaint-location
         v-if="section === 'location'"
         :steps="steps"
+        :victim="victim"
         :location="location"
         @back="section = 'cnp'"
-        @next="section = 'details'"
+        @next="handleLocationNext"
       />
 
       <complaint-details
@@ -68,7 +69,7 @@
         :steps="steps"
         :proof-type="proofType"
         @next="handleProofNext"
-        @back="section = 'details'"
+        @back="handleProofBack"
       />
 
       <complaint-uploads
@@ -77,6 +78,31 @@
         :uploads="uploads"
         @back="section = 'proof'"
         @next="section = 'preview'"
+      />
+
+      <complaint-location-to
+        v-if="section === 'locationTo'"
+        :steps="steps"
+        :locationTo="locationTo"
+        :locationToType="locationToType"
+        @back="section = 'location'"
+        @next="section = 'movingReason'"
+      />
+
+      <complaint-moving-reason
+        v-if="section === 'movingReason'"
+        :steps="steps"
+        :reason="reason"
+        @next="section = 'preview'"
+        @back="section = 'locationTo'"
+      />
+
+      <complaint-other-reason
+        v-if="section === 'otherReason'"
+        :steps="steps"
+        :reason="reason"
+        @next="section = 'proof'"
+        @back="section = 'location'"
       />
 
       <complaint-preview
@@ -119,7 +145,10 @@ import ComplaintPreview from '/components/complaint/ComplaintPreview'
 import ComplaintSuccess from '/components/complaint/ComplaintSuccess'
 import ComplaintLocation from '/components/complaint/ComplaintLocation'
 import ComplaintSignature from '/components/complaint/ComplaintSignature'
+import ComplaintLocationTo from '/components/complaint/ComplaintLocationTo'
 import ComplaintDisclaimer from '/components/complaint/ComplaintDisclaimer'
+import ComplaintOtherReason from '/components/complaint/ComplaintOtherReason'
+import ComplaintMovingReason from '/components/complaint/ComplaintMovingReason'
 
 export default {
   auth: false,
@@ -140,7 +169,10 @@ export default {
     ComplaintSuccess,
     ComplaintLocation,
     ComplaintSignature,
+    ComplaintLocationTo,
     ComplaintDisclaimer,
+    ComplaintOtherReason,
+    ComplaintMovingReason,
   },
   data() {
     return {
@@ -155,6 +187,8 @@ export default {
       'cnp',
       'idCardUpload',
       'location',
+      'locationTo',
+      'locationToType',
       'details',
       'reason',
       'proofType',
@@ -174,6 +208,41 @@ export default {
     await this.$store.dispatch('complaint/getLocations')
   },
   methods: {
+    handleVictimNext() {
+      if (this.victim === 'other') {
+        this.section = 'disclaimer'
+      } else {
+        this.section = 'type'
+      }
+    },
+    handleDisclaimerBack() {
+      if (this.victim === 'other') {
+        this.section = 'victim'
+      } else {
+        this.section = 'type'
+      }
+    },
+    handleLocationNext() {
+      const type = this.type
+      let section = 'otherReason'
+
+      if (type === 'hurt') {
+        section = 'details'
+      } else if (type === 'move') {
+        section = 'locationTo'
+      } else if (type === 'evaluation') {
+        section = 'preview'
+      }
+
+      this.section = section
+    },
+    handleProofBack() {
+      if (!this.type) {
+        this.section = 'otherReason'
+      } else {
+        this.section = 'details'
+      }
+    },
     handleProofNext() {
       if (this.proofType === 'yes') {
         this.section = 'uploads'
@@ -182,7 +251,13 @@ export default {
       }
     },
     handlePreviewBack() {
-      if (this.proofType === 'yes') {
+      const type = this.type
+
+      if (type === 'move') {
+        this.section = 'movingReason'
+      } else if (type === 'evaluation') {
+        this.section = 'location'
+      } else if (this.proofType === 'yes') {
         this.section = 'uploads'
       } else {
         this.section = 'proof'

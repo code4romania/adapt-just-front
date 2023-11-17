@@ -53,12 +53,7 @@
 
 <script>
 
-import FormRadioButton from '~/components/shared/buttons/FormRadioButton'
-
 export default {
-  components: {
-    FormRadioButton,
-  },
   props: {
     steps: {
       type: Number,

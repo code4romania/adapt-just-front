@@ -7,7 +7,7 @@
 
     <div class="title-container form-title">
       <page-title>
-        Unde te afli acum?
+        {{ title }}
       </page-title>
 
       <span class="subtitle">
@@ -59,6 +59,10 @@ export default {
       type: Number,
       default: 0,
     },
+    victim: {
+      type: String,
+      default: '',
+    }
   },
   data() {
     return {
@@ -68,6 +72,13 @@ export default {
   computed: {
     nextEnabled() {
       return !!this.location
+    },
+    title() {
+      if (this.victim === 'other') {
+        return 'Unde s-a petrecut incidentul?'
+      }
+
+      return 'Unde te afli acum?'
     }
   },
 }

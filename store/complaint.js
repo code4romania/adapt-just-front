@@ -69,6 +69,10 @@ const mutations = {
 
     if (type !== state.type) {
       state = Object.assign(state, initialState, { victim, locations })
+
+      if (type && type !== 'hurt') {
+        state.details = [type]
+      }
     }
 
     state.type = type
@@ -84,6 +88,12 @@ const mutations = {
   },
   setLocation(state, location) {
     state.location = location
+  },
+  setLocationTo(state, locationTo) {
+    state.locationTo = locationTo
+  },
+  setLocationToType(state, locationToType) {
+    state.locationToType = locationToType
   },
   setDetails(state, details) {
     state.details = details
@@ -121,6 +131,10 @@ const actions = {
     return this.$axios.get(`/api/public/complaints/institutions/list`, { params })
       .then(result => commit('setInstitutions', result.data))
   },
+  async create ({ commit }, params) {
+    return this.$axios.post(`/api/complaints`, params)
+      .then(result => result.data)
+  }
 }
 
 export default {

@@ -3,23 +3,21 @@
     class="locations-list pt-0"
     dense
   >
-    <v-list-item-group
-      v-model="selected"
-    >
+    <v-list-item-group>
       <v-list-item
-        v-for="location in locations"
-        :key="`location_${location.id}`"
-        @click="handleChange(location)"
+        v-for="loc in locations"
+        :key="`location_${loc.id}`"
+        @click="handleChange(loc)"
       >
-        <template v-slot:default="{ active }">
+        <template v-slot:default>
           <v-list-item-action>
-            <div class="check" :class="{ 'check--active': active }" />
+            <div class="check" :class="{ 'check--active': loc.id === location?.id }" />
           </v-list-item-action>
 
           <v-list-item-content>
             <v-list-item-title>
-              <span v-if="!search">{{ location.name }}</span>
-              <span v-else v-html="location.name.replace(new RegExp(search, 'gi'), '<b>$&</b>')" />
+              <span v-if="!search">{{ loc.name }}</span>
+              <span v-else v-html="loc.name.replace(new RegExp(search, 'gi'), '<b>$&</b>')" />
             </v-list-item-title>
           </v-list-item-content>
         </template>
@@ -44,20 +42,28 @@ export default {
       type: Array,
       default: () => [],
     },
-  },
-  data() {
-    return {
-      selected: this.location?.id || null,
-    }
+    section: {
+      type: String,
+      default: 'location',
+    },
   },
   methods: {
     handleChange(location) {
+      let action = 'complaint/setLocation'
+      if (this.section === 'locationTo') {
+        action = 'complaint/setLocationTo'
+      }
+
       if (location.id === this.location?.id) {
-        this.$store.commit('complaint/setLocation', null)
+        this.$store.commit(action, null)
         return
       }
 
-      this.$store.commit('complaint/setLocation', location)
+      this.$store.commit(action, location)
+      if (this.section === 'locationTo') {
+        this.$store.commit('complaint/setLocationToType', '')
+      }
+
       this.$emit('change')
     }
   }

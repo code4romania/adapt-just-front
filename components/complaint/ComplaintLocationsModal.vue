@@ -21,7 +21,7 @@
         <div class="locations-header-content">
           <div>
             <span class="locations-title">
-              Scrie în chenar <span class="font-weight-bold">localitatea</span> sau <span class="font-weight-bold">numele spitalului</span> pentru a găsi locația unde te afli:
+              Scrie în chenar <span class="font-weight-bold">localitatea</span> sau <span class="font-weight-bold">numele spitalului</span> pentru a găsi locația {{ section === 'locationTo' ? 'în care vrei să te muți' : 'unde te afli' }}:
             </span>
           </div>
 
@@ -51,6 +51,7 @@
       <v-card-text height="600px" class="mt-3">
         <complaint-locations-list
           :search="search"
+          :section="section"
           :location="location"
           :locations="filterLocations"
           @change="$emit('close')"
@@ -77,6 +78,10 @@ export default {
     visible: {
       type: Boolean,
       default: false,
+    },
+    section: {
+      type: String,
+      default: 'location',
     },
   },
   data() {
