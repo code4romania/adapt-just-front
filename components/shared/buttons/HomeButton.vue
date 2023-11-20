@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    to="/"
+    :to="to"
     outlined
     color="#FFF"
     class="home-button"
@@ -12,9 +12,26 @@
       class="mr-3"
     />
 
-    Ecran principal
+    {{ text }}
   </v-btn>
 </template>
+
+<script>
+
+export default {
+  props: {
+    to: {
+      type: String,
+      default: '/',
+    },
+    text: {
+      type: String,
+      default: 'Ecran principal',
+    },
+  }
+}
+
+</script>
 
 <style lang="scss">
 

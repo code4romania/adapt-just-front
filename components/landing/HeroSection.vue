@@ -22,7 +22,7 @@
 
           <next-button
             text="Cere ajutor"
-            @click.native="$router.push('/complaint')"
+            @click.native="$router.push('/cere-ajutor')"
           />
         </div>
       </v-col>
@@ -64,13 +64,7 @@
 
 <script>
 
-import NextButton from '/components/shared/buttons/NextButton'
-
-export default {
-  components: {
-    NextButton,
-  },
-}
+export default {}
 
 </script>
 

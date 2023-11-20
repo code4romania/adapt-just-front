@@ -29,8 +29,8 @@
       <v-btn
         text
         plain
-        to="/complaint"
         color="#264767"
+        to="/cere-ajutor"
         class="app-header-link ml-12"
       >
         Cere ajutor
@@ -39,6 +39,7 @@
       <v-btn
         text
         color="#264767"
+        to="/informatii"
         class="app-header-link"
       >
         Informații

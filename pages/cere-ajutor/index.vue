@@ -131,7 +131,6 @@
 <script>
 
 import { mapState, mapGetters } from 'vuex'
-import HomeButton from '/components/shared/buttons/HomeButton'
 
 import ComplaintCnp from '/components/complaint/ComplaintCnp'
 import ComplaintType from '/components/complaint/ComplaintType'
@@ -156,7 +155,6 @@ export default {
     title: 'Cere ajutor'
   },
   components: {
-    HomeButton,
     ComplaintCnp,
     ComplaintType,
     ComplaintData,
