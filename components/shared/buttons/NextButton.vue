@@ -1,5 +1,6 @@
 <template>
   <v-btn
+    data-listen-text
     class="next-button"
     :loading="loading"
     :disabled="disabled"

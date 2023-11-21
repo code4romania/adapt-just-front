@@ -16,7 +16,7 @@
             Cum te putem ajuta?
           </PageTitle>
 
-          <p class="help-text">
+          <p class="help-text" data-listen-text>
             Dacă ție sau cuiva din jurul tău <br />i s-a întâmplat ceva rău, <br />poți cere <span class="font-weight-bold">ajutor acum</span>.
           </p>
 
@@ -44,7 +44,7 @@
 
     <v-row no-gutters>
       <v-col class="text-center">
-        <v-btn text class="show-more" @click.native="$emit('more')">
+        <v-btn text class="show-more" data-listen-text @click.native="$emit('more')">
           Află mai multe
 
           <v-img

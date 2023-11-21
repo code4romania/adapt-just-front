@@ -1,5 +1,5 @@
 <template>
-  <h1 class="page-title">
+  <h1 class="page-title" data-listen-text>
     <slot></slot>
   </h1>
 </template>

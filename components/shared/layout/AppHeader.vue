@@ -49,6 +49,7 @@
         text
         color="#264767"
         class="app-header-link"
+        to="resurse-de-sprijin"
       >
         Resurse de sprijin
       </v-btn>

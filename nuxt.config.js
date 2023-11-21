@@ -120,7 +120,7 @@ export default {
         wght: [400]
       },
       Inter: [400, 500, 600, 700, 800],
-      "Titillium Web" : true,
+      "Titillium Web" : [400, 600, 700, 800],
       Montserrat: [700],
       'Encode Sans': [400, 500, 700],
     }
