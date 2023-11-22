@@ -56,6 +56,7 @@
 
       <v-btn
         text
+        to="/despre"
         color="#264767"
         class="app-header-link"
       >
