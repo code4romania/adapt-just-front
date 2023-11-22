@@ -65,6 +65,7 @@
 
       <v-btn
         text
+        to="/contact"
         color="#264767"
         class="app-header-link"
       >
