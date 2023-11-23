@@ -11,6 +11,8 @@
       <router-view />
     </v-main>
 
+    <app-footer v-if="footerVisible" />
+
     <app-hide-dialog
       :visible="hideApp"
       @close="hideApp = false"
@@ -22,6 +24,7 @@
 
 import AppAlert from '/components/shared/layout/AppAlert'
 import AppHeader from '/components/shared/layout/AppHeader'
+import AppFooter from '/components/shared/layout/AppFooter'
 import AppActions from '/components/shared/layout/AppActions'
 import AppHideDialog from '/components/shared/layout/AppHideDialog'
 
@@ -29,6 +32,7 @@ export default {
   components: {
     AppAlert,
     AppHeader,
+    AppFooter,
     AppActions,
     AppHideDialog,
   },
@@ -37,6 +41,11 @@ export default {
       hideApp: false,
     }
   },
+  computed: {
+    footerVisible() {
+      return !this.$route.path.startsWith('/cere-ajutor')
+    }
+  }
 }
 
 </script>

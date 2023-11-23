@@ -29,6 +29,7 @@
       <v-btn
         text
         plain
+        :ripple="false"
         color="#264767"
         to="/cere-ajutor"
         class="app-header-link ml-12"
@@ -38,6 +39,8 @@
 
       <v-btn
         text
+        plain
+        :ripple="false"
         color="#264767"
         to="/informatii"
         class="app-header-link"
@@ -47,7 +50,9 @@
 
       <v-btn
         text
+        plain
         color="#264767"
+        :ripple="false"
         class="app-header-link"
         to="resurse-de-sprijin"
       >
@@ -56,8 +61,10 @@
 
       <v-btn
         text
+        plain
         to="/despre"
         color="#264767"
+        :ripple="false"
         class="app-header-link"
       >
         Despre
@@ -65,8 +72,10 @@
 
       <v-btn
         text
+        plain
         to="/contact"
         color="#264767"
+        :ripple="false"
         class="app-header-link"
       >
         Contact

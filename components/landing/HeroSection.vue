@@ -80,13 +80,13 @@ export default {}
   .shape1 {
     left: 0;
     top: 0;
-    position: absolute;
+    flex-shrink: 0;
     width: 171.906px;
     height: 228.62px;
-    transform: rotate(123.699deg);
-    flex-shrink: 0;
-    fill: rgba(252, 211, 77, 0.30);
+    position: absolute;
     filter: blur(75px);
+    transform: rotate(123.699deg);
+    fill: rgba(252, 211, 77, 0.30);
   }
 
   .shape2 {
@@ -116,27 +116,27 @@ export default {}
   }
 
   .shape4 {
-    width: 332.424px;
-    height: 299.351px;
-    transform: rotate(40.1deg);
-    flex-shrink: 0;
-    fill: rgba(245, 158, 11, 0.10);
-    filter: blur(75px);
-    position: absolute;
     top: 0;
     right: 0;
+    flex-shrink: 0;
+    width: 332.424px;
+    height: 299.351px;
+    filter: blur(75px);
+    position: absolute;
+    transform: rotate(40.1deg);
+    fill: rgba(245, 158, 11, 0.10);
   }
 
   .shape5 {
+    right: 0;
+    bottom: 0;
+    flex-shrink: 0;
     width: 173.748px;
     height: 165.453px;
-    transform: rotate(40.1deg);
-    flex-shrink: 0;
-    fill: rgba(245, 158, 11, 0.10);
     filter: blur(75px);
     position: absolute;
-    bottom: 0;
-    right: 0;
+    transform: rotate(40.1deg);
+    fill: rgba(245, 158, 11, 0.10);
   }
 
   .help-text {
@@ -163,14 +163,6 @@ export default {}
       font-family: Inter, sans-serif;
       text-decoration-line: underline;
     }
-  }
-
-  .separator {
-    height: 1px;
-    width: 100%;
-    max-width: 1060px;
-    margin: 30px auto;
-    background-color: #DBDBDB;
   }
 }
 

@@ -56,6 +56,7 @@ export default {
   max-width: 484px;
   margin-bottom: 80px;
   border-radius: 12px !important;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.10) !important;
   
   .icon-container {
     top: -32px;
