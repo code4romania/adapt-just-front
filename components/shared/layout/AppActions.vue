@@ -1,6 +1,6 @@
 <template>
   <div class="app-actions">
-    <div>
+    <div class="d-flex flex">
       <v-btn
         text
         class="hide-button"
@@ -8,16 +8,18 @@
       >
         Ascunde
 
-        <v-img
-          src="/images/website/icons/hide-icon.svg"
-          height="24px"
-          width="24px"
-          class="ml-3"
-        />
+        <div>
+          <v-img
+            src="/images/website/icons/hide-icon.svg"
+            height="24px"
+            width="24px"
+            class="ml-3"
+          />
+        </div>
       </v-btn>
     </div>
 
-    <!-- <div>
+    <div class="d-flex flex">
       <v-btn
         text
         class="listen-button"
@@ -26,14 +28,16 @@
       >
         Ascultă
 
-        <v-img
-          src="/images/website/icons/listen-icon.svg"
-          height="24px"
-          width="24px"
-          class="ml-3"
-        />
+        <div>
+          <v-img
+            src="/images/website/icons/listen-icon.svg"
+            height="24px"
+            width="24px"
+            class="ml-3"
+          />
+        </div>
       </v-btn>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -138,6 +142,27 @@ export default {
       font-size: 1.25rem;
       font-style: normal;
       font-family: Inter, sans-serif;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .app-actions {
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    margin-top: 0;
+    flex-direction: row-reverse;
+
+    .hide-button {
+      width: 100%;
+      border-radius: 0px 8px 0px 0px !important;
+    }
+
+    .listen-button {
+      width: 100%;
+      margin-top: 0;
+      border-radius: 8px 0px 0px 0px !important;
     }
   }
 }

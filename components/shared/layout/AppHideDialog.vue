@@ -12,26 +12,21 @@
     </v-toolbar>
 
     <div class="splashscreen">
-      <v-row no-gutters style="height: 100%;">
-        <v-col cols="5" class="d-flex align-center justify-end">
-          <div>
-            <h1 class="splashscreen-title">Bună, <br>este</h1>
-            <h1 class="splashscreen-time" @click="$emit('close')">{{ time }}</h1>
-            <h2 class="splashscreen-date-label" v-if="dateLabel">{{ dateLabel }},</h2>
-            <h2 class="splashscreen-date">{{ date }}.</h2>
-            <h2 class="splashscreen-text mt-4">Apasă pe ceas pentru a reveni</h2>
-          </div>
-        </v-col>
+      <div style="z-index: 1;">
+        <h1 class="splashscreen-title">Bună, <br>este</h1>
+        <h1 class="splashscreen-time" @click="$emit('close')">{{ time }}</h1>
+        <h2 class="splashscreen-date-label" v-if="dateLabel">{{ dateLabel }},</h2>
+        <h2 class="splashscreen-date">{{ date }}.</h2>
+        <h2 class="splashscreen-text mt-4">Apasă pe ceas pentru a reveni</h2>
+      </div>
 
-        <v-col cols="7" class="d-flex align-center justify-center">
-          <v-img
-            src="/images/website/clock.svg"
-            max-width="763px"
-            max-height="477px"
-            @click="$emit('close')"
-          />
-        </v-col>
-      </v-row>
+      <div>
+        <v-img
+          src="/images/website/clock.svg"
+          class="clock-image"
+          @click="$emit('close')"
+        />
+      </div>
     </div>
   </v-dialog>
 </template>
@@ -83,8 +78,10 @@ export default {
 
   .splashscreen {
     display: flex;
-    flex-direction: column;
-    height: calc(100vh - 106px);
+    padding: 0 100px;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 106px);
 
     .splashscreen-title {
       font-size: 60px;
@@ -92,7 +89,7 @@ export default {
       line-height: 60px;
       font-style: normal;
       color: #264767;
-      font-family: Montserrat;
+      font-family: Montserrat, sans-serif;
     }
 
     .splashscreen-time {
@@ -102,7 +99,7 @@ export default {
       line-height: 171px;
       font-style: normal;
       color: #264767;
-      font-family: Montserrat;
+      font-family: Montserrat, sans-serif;
     }
 
     .splashscreen-date,
@@ -112,8 +109,8 @@ export default {
       font-size: 30px;
       line-height: 37px;
       color: #264767;
-      font-family: Montserrat;
       text-transform: capitalize;
+      font-family: Montserrat, sans-serif;
     }
 
     .splashscreen-text {
@@ -122,7 +119,62 @@ export default {
       font-weight: 700;
       font-style: normal;
       line-height: normal;
-      font-family: Montserrat;
+      font-family: Montserrat, sans-serif;
+    }
+
+    .clock-image {
+      max-width: 763px;
+      max-height: 477px;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'md-only')} {
+  .hide-dialog {
+    .splashscreen {
+      padding: 0 50px !important;
+
+      .clock-image {
+        max-width: 580px !important;
+        max-height: 400px !important;
+      }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .hide-dialog {
+    .splashscreen {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding-top: 50px !important;
+
+      .splashscreen-title {
+        font-size: 48px;
+      }
+      
+      .splashscreen-time {
+        font-size: 120px;
+        margin: 0 !important;
+      }
+
+      .clock-image {
+        bottom: 0;
+        right: -60px;
+        position: absolute;
+        max-width: 500px !important;
+        max-height: 400px !important;
+      }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .hide-dialog {
+    .splashscreen {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
     }
   }
 }

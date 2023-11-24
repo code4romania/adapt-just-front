@@ -3,7 +3,7 @@
     <div class="line" />
     <div class="footer-content">
       <v-row>
-        <v-col cols="7" class="d-flex">
+        <v-col cols="12" lg="7" class="d-flex left-col">
           <div>
             <div class="footer-text" style="margin-bottom: 13px;">
               Un proiect realizat de
@@ -14,7 +14,13 @@
               height="94px"
             />
           </div>
-          <div style="margin-left: 48px;">
+
+          <div
+            :style="{
+              'margin-top': $vuetify.breakpoint.xsOnly ? '50px' : '0',
+              'margin-left': $vuetify.breakpoint.xsOnly ? '0' : '48px',
+            }"
+          >
             <div class="footer-text" style="margin-bottom: 35px;">
               Proiectat de
             </div>
@@ -24,7 +30,13 @@
               height="52px"
             />
           </div>
-          <div style="margin-left: 71px;">
+
+          <div
+            :style="{
+              'margin-top': $vuetify.breakpoint.xsOnly ? '50px' : '0',
+              'margin-left': $vuetify.breakpoint.xsOnly ? '0' : '71px',
+            }"
+          >
             <div class="footer-text">
               Cu sprijinul
             </div>
@@ -36,7 +48,7 @@
           </div>
         </v-col>
 
-        <v-col cols="5">
+        <v-col cols="12" lg="5" class="right-col">
           <div class="footer-app-text text-right" style="margin-bottom: 10px;">
             Descarcă aplicația
           </div>
@@ -142,6 +154,43 @@
           text-transform: uppercase;
           font-family: "Source Sans Pro", sans-serif;
         }
+      }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'md-and-down')} {
+  .app-footer {
+    .left-col {
+      justify-content: space-around;
+    }
+
+    .right-col {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .app-footer {
+    .footer-content {
+      margin: 74px 20px 50px;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .app-footer {
+    margin-bottom: 30px;
+
+    .left-col {
+      align-items: center;
+      flex-direction: column;
+
+      .footer-text {
+        text-align: center;
       }
     }
   }

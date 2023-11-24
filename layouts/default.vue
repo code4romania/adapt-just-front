@@ -56,4 +56,10 @@ export default {
   padding-top: $main-padding-top !important;
 }
 
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .app-main {
+    padding-top: $main-padding-top-sm !important;
+  }
+}
+
 </style>

@@ -5,8 +5,10 @@
 @import '~vuetify/src/styles/settings/_variables';
 
 $alert-height: 47px;
+$alert-height-sm: 60px;
 $header-height: 64px;
 $main-padding-top: $alert-height + $header-height;
+$main-padding-top-sm: $alert-height-sm + $header-height;
 
 $yellow50: #FFFBEB;
 $yellow200: #FDE68A;

@@ -12,7 +12,7 @@ export default {
   name: 'AppAlert',
   methods: {
     callEmergency() {
-      // window.open('tel:112', '_blank')
+      window.open('tel:112', '_blank')
     }
   }
 }
@@ -36,8 +36,8 @@ export default {
   .alert-message {
     color: $gray900;
     font-size: 1.25rem;
-    font-family: Inter;
     text-transform: uppercase;
+    font-family: Inter, sans-serif;
 
     span {
       text-decoration-line: underline;
@@ -45,6 +45,25 @@ export default {
       &:hover {
         cursor: pointer;
       }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .app-alert {
+    height: $alert-height-sm;
+
+    .alert-message {
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .app-alert {
+    .alert-message {
+      font-size: 0.9rem;
     }
   }
 }
