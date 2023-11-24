@@ -53,22 +53,32 @@ const getters = {
 
 const mutations = {
   setVictim(state, victim) {
-    const { locations } = state
+    const {
+      lat,
+      lng,
+      locations,
+    } = state
 
     if (victim !== state.victim) {
-      state = Object.assign(state, initialState, { locations })
+      state = Object.assign(state, initialState, { lat, lng, locations })
     }
 
     state.victim = victim
   },
   setType(state, type) {
     const {
+      lat,
+      lng,
       victim,
       locations,
     } = state
 
     if (type !== state.type) {
-      state = Object.assign(state, initialState, { victim, locations })
+      state = Object.assign(
+        state,
+        initialState,
+        { lat, lng, victim, locations }
+      )
 
       if (type && type !== 'hurt') {
         state.details = [type]
@@ -79,6 +89,10 @@ const mutations = {
   },
   setName(state, name) {
     state.name = name
+  },
+  setCoords(state, coords) {
+    state.lat = coords.lat
+    state.lng = coords.lng
   },
   setCnp(state, cnp) {
     state.cnp = cnp

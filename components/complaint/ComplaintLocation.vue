@@ -42,6 +42,8 @@
 
 <script>
 
+import { mapState } from 'vuex'
+import { getDistance } from '~/util/geolocation'
 import ComplaintLocationsModal from './ComplaintLocationsModal'
 import ComplaintLocationButton from './ComplaintLocationButton'
 
@@ -62,7 +64,17 @@ export default {
     victim: {
       type: String,
       default: '',
-    }
+    },
+    lat: {
+      type: Number,
+      default: null,
+      required: false,
+    },
+    lng: {
+      type: Number,
+      default: null,
+      required: false,
+    },
   },
   data() {
     return {
@@ -70,6 +82,7 @@ export default {
     }
   },
   computed: {
+    ...mapState('complaint', ['locations']),
     nextEnabled() {
       return !!this.location
     },
@@ -81,6 +94,41 @@ export default {
       return 'Unde te afli acum?'
     }
   },
+  mounted() {
+    if (this.lat && this.lng && !this.location) {
+      this.checkLocation()
+    }
+  },
+  methods: {
+    checkLocation() {
+      let min = 100000
+      let location = null
+
+      this.locations.forEach((item) => {
+        const { lat, lng } = item
+
+        if (!lat || !lng) {
+          return
+        }
+
+        const distance = getDistance(
+          this.lat,
+          this.lng,
+          lat,
+          lng,
+        )
+
+        if (distance < min && distance < 3) {
+          min = distance
+          location = item
+        }
+      })
+
+      if (location) {
+        this.$store.commit('complaint/setLocation', location)
+      }
+    }
+  }
 }
 
 </script>

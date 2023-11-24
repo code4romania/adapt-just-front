@@ -48,6 +48,8 @@
 
       <complaint-location
         v-if="section === 'location'"
+        :lat="lat"
+        :lng="lng"
         :steps="steps"
         :victim="victim"
         :location="location"
@@ -184,6 +186,8 @@ export default {
       'name',
       'cnp',
       'idCardUpload',
+      'lat',
+      'lng',
       'location',
       'locationTo',
       'locationToType',
@@ -203,7 +207,20 @@ export default {
     }
   },
   async mounted() {
-    await this.$store.dispatch('complaint/getLocations')
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const lat = position.coords.latitude
+          const lng = position.coords.longitude
+
+          this.$store.commit('complaint/setCoords', { lat, lng })
+          await this.$store.dispatch('complaint/getLocations')
+        },
+        async (error) => {
+          await this.$store.dispatch('complaint/getLocations')
+        }
+      )
+    }
   },
   methods: {
     handleVictimNext() {
