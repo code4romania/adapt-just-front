@@ -17,6 +17,7 @@
         :error-messages="errors"
         color="#D1D5DB"
         hide-details="auto"
+        v-on="$listeners"
       />
     </ValidationProvider>
   </div>
@@ -43,6 +44,13 @@ export default {
   data: () => ({
     innerValue: ''
   }),
+  watch:{
+    value: {
+      handler() {
+        this.innerValue = this.value
+      }
+    }
+  }
 }
 
 </script>

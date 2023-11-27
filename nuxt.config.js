@@ -19,6 +19,18 @@ export default {
     ]
   },
 
+  publicRuntimeConfig: {
+    recaptcha: {
+      /* reCAPTCHA options */
+      siteKey: process.env.RECAPTCHA_SITE_KEY // for example
+    }
+  },
+
+  privateRuntimeConfig: {
+    recaptcha_site_key: process.env.RECAPTCHA_SITE_KEY
+  },
+
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
@@ -52,7 +64,6 @@ export default {
     [
       '@nuxtjs/recaptcha', {
         hideBadge: false,
-        siteKey: 'site-key',
         version: 3
       }
     ]

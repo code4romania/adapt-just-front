@@ -44,6 +44,13 @@ export default {
   data: () => ({
     innerValue: ''
   }),
+  watch:{
+    value: {
+      handler() {
+        this.innerValue = this.value
+      }
+    }
+  }
 }
 
 </script>

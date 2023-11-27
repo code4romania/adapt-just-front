@@ -6,7 +6,7 @@
           <v-col cols="6">
             <contact-form-input
               v-model="form.first_name"
-              :v-id="form.first_name"
+              vid="form.first_name"
               name="Nume"
               rules="required"
               placeholder="Nume"
@@ -15,7 +15,7 @@
           <v-col cols="6">
             <contact-form-input
               v-model="form.last_name"
-              :v-id="form.last_name"
+              vid="form.last_name"
               name="Prenume"
               rules="required"
               placeholder="Prenume"
@@ -27,7 +27,7 @@
           <v-col>
             <contact-form-input
               v-model="form.email"
-              :v-id="form.email"
+              vid="form.email"
               name="Email"
               placeholder="Email"
               rules="required|email"
@@ -39,7 +39,7 @@
           <v-col>
             <contact-form-message
               v-model="form.message"
-              :v-id="form.message"
+              vid="message"
               name="Mesaj"
               placeholder="Mesaj"
               rules="required"
@@ -55,7 +55,7 @@
               rules="required"
             >
               <v-switch
-                v-model="terms"
+                v-model="form.terms"
                 inset
                 id="terms"
                 :ripple="false"
@@ -74,11 +74,19 @@
 
         <v-row>
           <v-col>
-            <recaptcha
-              @error="onError"
-              @success="onSuccess"
-              @expired="onExpired"
-            />
+            <ValidationProvider
+                name="reCaptcha"
+                vid="g-recaptcha-response"
+            >
+              <v-text-field
+                type="hidden"
+                flat
+                solo
+                slot-scope="{ errors }"
+                :error-messages="errors"
+                class="hidden-input"
+              />
+            </ValidationProvider>
           </v-col>
         </v-row>
 
@@ -94,6 +102,11 @@
             >
               Trimite
             </v-btn>
+          </v-col>
+        </v-row>
+        <v-row v-if="successSent">
+          <v-col>
+            <v-alert type="success">Mesajul a fost trimis cu succes.</v-alert>
           </v-col>
         </v-row>
       </v-form>
@@ -119,8 +132,16 @@ export default {
         last_name: '',
         email: '',
         message: '',
+        terms: '',
       },
-      terms: '',
+      successSent: false,
+    }
+  },
+  async mounted() {
+    try {
+      await this.$recaptcha.init()
+    } catch (e) {
+      console.error(e);
     }
   },
   methods: {
@@ -130,16 +151,43 @@ export default {
     openLink2() {
       window.open('https://www.google.com', '_blank')
     },
-    onError() {},
+    onError(err) {
+      console.log(err)
+    },
     onSuccess() {},
     onExpired() {},
     async submit() {
       this.loading = true
+      this.successSent = false;
+
+      let token = ''
+      try {
+        token = await this.$recaptcha.execute('contactForm')
+      } catch (ex) {}
 
       const result = await this.$refs.form.validate()
       if (!result) {
         this.loading = false
         return
+      }
+
+      this.form['g-recaptcha-response'] = token;
+      try {
+        await this.$store.dispatch('contact/send', this.form)
+        this.form = {
+              first_name: '',
+              last_name: '',
+              email: '',
+              message: '',
+              terms: '',
+        }
+        this.$refs.form.reset()
+
+        this.successSent = true
+
+      } catch (ex) {
+
+        this.$form.handleError(ex, this.$refs.form)
       }
 
       this.loading = false
@@ -163,6 +211,15 @@ export default {
 
     .link {
       text-decoration-line: underline;
+    }
+  }
+  .hidden-input.v-input {
+    .v-input__control {
+      min-height: 0px;
+    }
+    .v-input__slot{
+      height: 0px;
+      margin: 0px;
     }
   }
 }
