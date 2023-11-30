@@ -44,7 +44,15 @@ const actions = {
   },
   delete ({ commit }, params) {
     return this.$axios.delete(`/api/resources/${params.id}`)
-  }
+  },
+  getResources ({ commit }, type) {
+    return this.$axios.get(`/api/public/resources/${type}`)
+      .then(result => result.data.data)
+  },
+  getResource ({ commit }, id) {
+    return this.$axios.get(`/api/public/resources/${id}/show`)
+      .then(result => result.data.data)
+  },
 }
 
 export default {

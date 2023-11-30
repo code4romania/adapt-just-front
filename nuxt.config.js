@@ -1,4 +1,3 @@
-import colors from 'vuetify/es5/util/colors'
 import webpack from "webpack";
 
 export default {
@@ -20,6 +19,18 @@ export default {
     ]
   },
 
+  publicRuntimeConfig: {
+    recaptcha: {
+      /* reCAPTCHA options */
+      siteKey: process.env.RECAPTCHA_SITE_KEY // for example
+    }
+  },
+
+  privateRuntimeConfig: {
+    recaptcha_site_key: process.env.RECAPTCHA_SITE_KEY
+  },
+
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
@@ -31,7 +42,8 @@ export default {
     '~/plugins/vue-confirm-dialog.js',
     { src: '~/plugins/helpers/user.js' },
     { src: '~/plugins/helpers/form.js' },
-    { src: '~/plugins/axios.js'}
+    { src: '~/plugins/axios.js'},
+    { src: '~/plugins/component-loader.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -48,7 +60,13 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    [
+      '@nuxtjs/recaptcha', {
+        hideBadge: false,
+        version: 3
+      }
+    ]
   ],
 
   ssr: false,
@@ -106,7 +124,7 @@ export default {
           // warning: colors.amber.base,
           // error: colors.deepOrange.accent4,
           // success: colors.green.accent3,
-          anchor: '#8c9eff'
+          anchor: '#8c9eff',
         }
       }
     }
@@ -119,8 +137,11 @@ export default {
       Roboto: {
         wght: [400]
       },
-      Inter: true,
-      "Titillium Web" : true
+      Inter: [400, 500, 600, 700, 800],
+      "Titillium Web" : [400, 600, 700, 800],
+      Montserrat: [700],
+      'Encode Sans': [400, 500, 700],
+      'Source Sans Pro': [600],
     }
   },
 

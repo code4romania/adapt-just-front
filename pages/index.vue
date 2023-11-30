@@ -1,79 +1,185 @@
 <template>
-  <v-container class="splashscreen">
-    <v-row>
-      <v-col>
-        <v-toolbar
-          flat
-        >
-          <v-toolbar-title>
-            <v-img src="/images/website/clocktime.svg"/>
-          </v-toolbar-title>
-        </v-toolbar>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <h1 class="splashscreen-title">Bună, <br>este</h1>
-        <h1 class="splashscreen-time">{{ time }}</h1>
-        <h2 class="splashscreen-date-label" v-if="dateLabel">{{ dateLabel }},</h2>
-        <h2 class="splashscreen-date">{{ date }}</h2>
-      </v-col>
-    </v-row>
-  </v-container>
+  <div class="landing-page">
+    <hero-section @more="scrollNext" />
+
+    <div id="home-info">
+      <div class="home-section">
+        <div class="d-flex">
+          <div>
+            <h2 class="section-title">Nu știi dacă trebuie să ceri ajutor?</h2>
+            <div class="section-line" />
+          </div>
+        </div>
+        <div class="mt-4">
+          <h3 class="section-subtitle">
+            Află mai multe despre:
+          </h3>
+        </div>
+
+        <div class="articles-container">
+          <v-row>
+            <v-col v-for="article in homeArticles" :key="`article_${article.id}`" cols="4" class="mb-8">
+              <article-card
+                :article="article"
+                :show-image="false"
+              />
+            </v-col>
+          </v-row>
+        </div>
+      </div>
+
+      <div class="separator" />
+
+      <div class="home-section">
+        <div class="d-flex">
+          <div>
+            <h2 class="section-title">Resurse de sprijin</h2>
+            <div class="section-line" />
+          </div>
+        </div>
+
+        <div class="resources-container">
+          <v-row>
+            <v-col cols="4">
+              <resource-card
+                title="Numere de telefon"
+                button-text="Citește mai mult"
+                to="/resurse-de-sprijin/numere-de-telefon"
+                icon="/images/website/icons/phone-numbers-icon.svg"
+              />
+            </v-col>
+              
+            <v-col cols="4">
+              <resource-card
+                title="Organizații"
+                button-text="Citește mai mult"
+                to="/resurse-de-sprijin/organizatii"
+                icon="/images/website/icons/organisations-icon.svg"
+              />
+            </v-col>
+              
+            <v-col cols="4">
+              <resource-card
+                title="Sfaturi avocat"
+                button-text="Citește mai mult"
+                to="/resurse-de-sprijin/sfaturi-avocat"
+                icon="/images/website/icons/lawyer-icon.svg"
+              />
+            </v-col>
+          </v-row>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+
+import { mapState } from 'vuex'
+import HeroSection from '/components/landing/HeroSection'
+import ArticleCard from '~/components/articles/ArticleCard'
+import ResourceCard from '~/components/resources/ResourceCard'
+
 export default {
   auth: false,
   head: {
     titleTemplate: null
   },
-  created() {
-    setInterval(this.getNow, 1000);
+  components: {
+    HeroSection,
+    ArticleCard,
+    ResourceCard,
   },
-  data() {
-    return {
-      time: '',
-      dateLabel: '',
-      date: ''
+  computed: {
+    ...mapState('articles', ['articles']),
+    homeArticles() {
+      return this.articles.slice(0, 3)
     }
+  },
+  async mounted() {
+    await this.getArticles()
   },
   methods: {
-    getNow: function() {
-      this.time = this.$moment().format('HH:mm')
-      this.dateLabel = this.$moment().format('dddd')
-      this.date = this.$moment().format('DD.MM.YYYY')
+    scrollNext() {
+      const nextSection = document.getElementById('home-info');
+
+      nextSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    },
+    async getArticles() {
+      try {
+        await this.$store.dispatch('articles/getArticles')
+        this.loading = false
+      } catch (error) {
+        this.loading = false
+      }
     }
-  }
+  },
 }
+
 </script>
 
 <style lang="scss">
-.splashscreen{
-  .splashscreen-title{
-    font-style: normal;
-    font-weight: 700;
-    font-size: 60px;
-    line-height: 60px;
-    color: #264767;
-    margin-top: 100px;
-  }
-  .splashscreen-time{
-    font-style: normal;
-    font-weight: 700;
-    font-size: 140px;
-    line-height: 171px;
-    color: #264767;
-    margin: 30px 0px;
-  }
-  .splashscreen-date,
-  .splashscreen-date-label{
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 37px;
 
-    color: #264767;
+.landing-page {
+  .separator {
+    height: 1px;
+    width: 100%;
+    max-width: 1060px;
+    margin: 30px auto;
+    background-color: #DBDBDB;
+  }
+
+  #home-info {
+    scroll-margin: 81px 0 0 0;
+
+    .home-section {
+      width: 100%;
+      padding-top: 81px;
+      margin: 0 auto 34px;
+      max-width: 1060px;
+
+      .section-title {
+        color: $gray700;
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 28px;
+        font-style: normal;
+        text-transform: uppercase;
+        font-family: "Inter", sans-serif;
+      }
+
+      .section-subtitle {
+        color: $gray500;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 28px;
+        font-style: normal;
+        text-transform: uppercase;
+        font-family: "Inter", sans-serif;
+      }
+
+      .section-line {
+        width: 100%;
+        height: 10px;
+        margin-top: 4px;
+        background-color: $yellow300;
+      }
+
+      .articles-container {
+        margin-top: 40px;
+      }
+
+      .resources-container {
+        margin-top: 100px;
+
+        .resource-card {
+          margin-bottom: 0 !important;
+        }
+      }
+    }
   }
 }
 

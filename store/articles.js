@@ -1,4 +1,5 @@
 const initialState = {
+  articles: [],
   article: {
     name: '',
     status: 'draft',
@@ -7,7 +8,7 @@ const initialState = {
     published_at: '',
     upload_id: null,
     upload: null
-  }
+  },
 };
 
 const state = () => ({
@@ -20,6 +21,9 @@ const mutations = {
   },
   setArticle (state, form) {
     state.article = form
+  },
+  setArticles (state, articles) {
+    state.articles = articles
   },
 }
 
@@ -42,6 +46,18 @@ const actions = {
   },
   delete ({ commit }, params) {
     return this.$axios.delete(`/api/articles/${params.id}`)
+  },
+  getArticles ({ commit }) {
+    return this.$axios.get(`/api/public/articles`)
+      .then((res) => {
+          commit('setArticles', res.data.data)
+      })
+  },
+  getArticle ({ commit }, articleId) {
+    return this.$axios.get(`/api/public/articles/${articleId}`)
+      .then((res) => {
+          return res.data.data
+      })
   }
 }
 
