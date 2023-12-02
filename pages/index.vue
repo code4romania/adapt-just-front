@@ -6,19 +6,27 @@
       <div class="home-section">
         <div class="d-flex">
           <div>
-            <h2 class="section-title">Nu știi dacă trebuie să ceri ajutor?</h2>
+            <h2 class="section-title" data-listen-text>Nu știi dacă trebuie să ceri ajutor?</h2>
             <div class="section-line" />
           </div>
         </div>
         <div class="mt-4">
-          <h3 class="section-subtitle">
+          <h3 class="section-subtitle" data-listen-text>
             Află mai multe despre:
           </h3>
         </div>
 
         <div class="articles-container">
           <v-row>
-            <v-col v-for="article in homeArticles" :key="`article_${article.id}`" cols="4" class="mb-8">
+            <v-col
+              v-for="article in homeArticles"
+              :key="`article_${article.id}`"
+              class="mb-8"
+              cols="12"
+              sm="12"
+              md="6"
+              lg="4"
+            >
               <article-card
                 :article="article"
                 :show-image="false"
@@ -33,14 +41,14 @@
       <div class="home-section">
         <div class="d-flex">
           <div>
-            <h2 class="section-title">Resurse de sprijin</h2>
+            <h2 class="section-title" data-listen-text>Resurse de sprijin</h2>
             <div class="section-line" />
           </div>
         </div>
 
         <div class="resources-container">
           <v-row>
-            <v-col cols="4">
+            <v-col cols="12" sm="12" md="6" lg="4">
               <resource-card
                 title="Numere de telefon"
                 button-text="Citește mai mult"
@@ -49,7 +57,7 @@
               />
             </v-col>
               
-            <v-col cols="4">
+            <v-col cols="12" sm="12" md="6" lg="4" :class="{'mt-8': $vuetify.breakpoint.smAndDown}">
               <resource-card
                 title="Organizații"
                 button-text="Citește mai mult"
@@ -58,7 +66,7 @@
               />
             </v-col>
               
-            <v-col cols="4">
+            <v-col cols="12" sm="12" md="6" lg="4" :class="{'mt-8': $vuetify.breakpoint.mdAndDown}">
               <resource-card
                 title="Sfaturi avocat"
                 button-text="Citește mai mult"
@@ -145,7 +153,7 @@ export default {
         color: $gray700;
         font-size: 32px;
         font-weight: 600;
-        line-height: 28px;
+        line-height: 38px;
         font-style: normal;
         text-transform: uppercase;
         font-family: "Inter", sans-serif;
@@ -179,6 +187,25 @@ export default {
           margin-bottom: 0 !important;
         }
       }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'md-and-down')} {
+  .landing-page {
+    .home-section {
+      width: auto !important;
+      margin-left: 40px !important;
+      margin-right: 40px !important;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .landing-page {
+    .home-section {
+      margin-left: 20px !important;
+      margin-right: 20px !important;
     }
   }
 }

@@ -1,14 +1,21 @@
 <template>
-  <v-textarea
-    v-model="innerValue"
-    flat
-    outlined
-    height="200px"
-    color="#BDBDBD"
-    hide-details="auto"
-    class="form-text-area"
-    :placeholder="placeholder"
-  />
+  <div>
+    <v-textarea
+      v-model="innerValue"
+      flat
+      outlined
+      height="200px"
+      color="#BDBDBD"
+      data-listen-text
+      hide-details="auto"
+      class="form-text-area"
+      :placeholder="placeholder"
+    />
+
+    <span v-if="!innerValue" data-listen-text style="display: none;">
+      {{ placeholder }}
+    </span>
+  </div>
 </template>
 
 <script>

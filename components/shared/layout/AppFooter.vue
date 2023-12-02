@@ -4,7 +4,7 @@
     <div class="footer-content">
       <v-row>
         <v-col cols="12" lg="7" class="d-flex left-col">
-          <div>
+          <div :class="{ 'd-flex flex-column align-center': $vuetify.breakpoint.xsOnly }">
             <div class="footer-text" style="margin-bottom: 13px;">
               Un proiect realizat de
             </div>
@@ -20,6 +20,7 @@
               'margin-top': $vuetify.breakpoint.xsOnly ? '50px' : '0',
               'margin-left': $vuetify.breakpoint.xsOnly ? '0' : '48px',
             }"
+            :class="{ 'd-flex flex-column align-center': $vuetify.breakpoint.xsOnly }"
           >
             <div class="footer-text" style="margin-bottom: 35px;">
               Proiectat de
@@ -36,6 +37,7 @@
               'margin-top': $vuetify.breakpoint.xsOnly ? '50px' : '0',
               'margin-left': $vuetify.breakpoint.xsOnly ? '0' : '71px',
             }"
+            :class="{ 'd-flex flex-column align-center': $vuetify.breakpoint.xsOnly }"
           >
             <div class="footer-text">
               Cu sprijinul
@@ -54,20 +56,25 @@
           </div>
           <div class="d-flex justify-end">
             <div>
-              <v-img
-                src="/images/website/app-store.svg"
-                width="150px"
-                height="50px"
-              />
+              <a href="https://apps.apple.com/us/app/ceasul-bun/id6451291309" target="_blank">
+                <v-img
+                  src="/images/website/app-store.svg"
+                  width="150px"
+                  height="50px"
+                />
+              </a>
             </div>
             <div style="margin-left: 20px;">
-              <v-img
-                src="/images/website/google-play.svg"
-                width="168px"
-                height="50px"
-              />
+              <a href="https://play.google.com/store/apps/details?id=com.adaptjust&hl=ro&gl=US" target="_blank">
+                <v-img
+                  src="/images/website/google-play.svg"
+                  width="168px"
+                  height="50px"
+                />
+              </a>
             </div>
           </div>
+
           <div class="footer-links">
             <v-btn
               text
@@ -192,6 +199,10 @@
       .footer-text {
         text-align: center;
       }
+    }
+    
+    .footer-links {
+      flex-direction: column;
     }
   }
 }

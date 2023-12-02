@@ -15,13 +15,13 @@
       </svg>
 
       <div class="mt-6">
-        <span class="title">
+        <span class="title" data-listen-text>
           {{ title }}
         </span>
       </div>
 
       <div v-if="description" class="mt-6 text-center">
-        <span class="description">
+        <span class="description" data-listen-text>
           {{ description }}
         </span>
       </div>

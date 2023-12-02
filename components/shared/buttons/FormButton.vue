@@ -14,11 +14,11 @@
     />
 
     <div class="button-content">
-      <span class="d-block button-title">
+      <span class="d-block button-title" data-listen-text>
         {{ title }}
       </span>
       <div v-if="subtitle" class="subtitle-container">
-        <span class="d-block button-subtitle">
+        <span class="d-block button-subtitle" data-listen-text>
           {{ subtitle }}
         </span>
       </div>
@@ -131,6 +131,16 @@ export default {
           font-family: Inter, sans-serif;
         }
       }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .form-button {
+    padding: 28px !important;
+
+    .button-content {
+      margin-left: 30px !important;
     }
   }
 }

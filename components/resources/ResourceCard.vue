@@ -9,11 +9,11 @@
     </div>
 
     <v-card-text class="pa-0 px-6">
-      <span class="resource-title">{{ title }}</span>
+      <span class="resource-title" data-listen-text>{{ title }}</span>
     </v-card-text>
 
     <v-card-actions>
-      <v-btn :to="to" text block color="primary">
+      <v-btn :to="to" text block color="primary" data-listen-text>
         {{ buttonText }}
         <v-icon right>mdi-arrow-right</v-icon>
       </v-btn>

@@ -10,7 +10,7 @@
         Unde vrei să te muți?
       </page-title>
 
-      <span class="subtitle">
+      <span class="subtitle" data-listen-text>
         Alege numele localității și al spitalului sau al centrului în care vrei să te muți
       </span>
     </div>
@@ -32,7 +32,7 @@
       <div class="record-container">
         <record-text />
         <div class="mt-6">
-          <record-button />
+          <record-button @input="handleRecording" />
         </div>
       </div>
     </div>
@@ -86,7 +86,10 @@ export default {
       if (this.locationTo) {
         this.$store.commit('complaint/setLocationTo', null)
       }
-    }
+    },
+    handleRecording(name) {
+      this.$store.commit('complaint/setLocationTo', { name })
+    },
   }
 }
 

@@ -24,7 +24,7 @@
       <div class="record-container">
         <record-text />
         <div class="mt-6">
-          <record-button />
+          <record-button @input="handleRecording" />
         </div>
       </div>
     </div>
@@ -53,6 +53,10 @@ export default {
     handleReasonChange(value) {
       this.$store.commit('complaint/setReason', value)
     },
+    handleRecording(text) {
+      const reason = this.reason ? `${this.reason} ${text}` : text
+      this.$store.commit('complaint/setReason', reason)
+    }
   }
 }
 

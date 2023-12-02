@@ -13,7 +13,7 @@
         </div>
 
         <div v-if="article.content" class="content-container">
-          <div class="content" v-html="article.content" />
+          <div class="content" v-html="article.content" data-listen-text />
         </div>
 
         <div v-if="article.short_content" class="article-expand-container">
@@ -25,15 +25,15 @@
               <v-icon v-else color="#1F2937" class="mr-4">
                 mdi-chevron-up
               </v-icon>
-              <span>Citește textul în format accesibilizat</span>
+              <span data-listen-text>Citește textul în format accesibilizat</span>
             </div>
 
-            <div v-if="expanded" class="expanded-content content" v-html="article.short_content" />
+            <div v-if="expanded" class="expanded-content content" v-html="article.short_content" data-listen-text />
           </div>
         </div>
 
         <div class="complaint-container">
-          <h1 class="complaint-text">
+          <h1 class="complaint-text" data-listen-text>
             Ai pățit și tu asta?
           </h1>
           <next-button
@@ -158,6 +158,37 @@ export default {
         text-transform: uppercase;
         font-family: Inter, sans-serif;
       }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'md-and-down')} {
+  .article-page {
+    .article-content {
+      width: auto !important;
+      margin-top: 180px !important;
+      margin-left: 40px !important;
+      margin-right: 40px !important;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .article-page {
+    .article-content {
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .article-page {
+    .article-content {
+      margin-top: 40px !important;
+      margin-left: 20px !important;
+      margin-right: 20px !important;
     }
   }
 }

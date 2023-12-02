@@ -13,7 +13,7 @@
     />
 
     <div class="button-content">
-      <span class="d-block button-title">
+      <span class="d-block button-title" data-listen-text>
         {{ title }}
       </span>
     </div>

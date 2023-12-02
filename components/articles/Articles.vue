@@ -4,7 +4,8 @@
       v-for="article in articles"
       :key="`article_${article.id}`"
       class="py-8"
-      cols="6"
+      cols="12"
+      sm="6"
     >
       <article-card :article="article" />
     </v-col>

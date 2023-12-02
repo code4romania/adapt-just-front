@@ -10,18 +10,22 @@
         {{ title }}
       </page-title>
 
-      <span class="subtitle">
+      <span class="subtitle" data-listen-text>
         Alege numele localității și al spitalului sau al centrului:
       </span>
     </div>
 
     <div class="form-container">
-      <div class="d-flex align-center">
+      <div
+        class="d-flex align-center"
+        :class="{ 'flex-column': $vuetify.breakpoint.smAndDown }"
+      >
         <complaint-location-button
           :location="location"
           @click="showLocations = true"
         />
-        <record-button />
+
+        <record-button @input="handleRecording" />
       </div>
       <record-text />
     </div>
@@ -100,6 +104,13 @@ export default {
     }
   },
   methods: {
+    handleRecording(name) {
+      this.$store.commit('complaint/setLocation', {
+        name,
+        lat: this.lat,
+        lng: this.lng,
+      })
+    },
     checkLocation() {
       let min = 100000
       let location = null

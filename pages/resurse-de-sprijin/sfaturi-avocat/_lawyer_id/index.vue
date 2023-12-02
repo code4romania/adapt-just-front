@@ -13,7 +13,7 @@
         </div>
 
         <div v-if="lawyer.content" class="content-container">
-          <div class="content" v-html="lawyer.content" />
+          <div class="content" v-html="lawyer.content" data-listen-text />
         </div>
 
         <div v-if="lawyer.short_content" class="article-expand-container">
@@ -25,10 +25,10 @@
               <v-icon v-else color="#1F2937" class="mr-4">
                 mdi-chevron-up
               </v-icon>
-              <span>Citește textul în format accesibilizat</span>
+              <span data-listen-text>Citește textul în format accesibilizat</span>
             </div>
 
-            <div v-if="expanded" class="expanded-content content" v-html="lawyer.short_content" />
+            <div v-if="expanded" class="expanded-content content" v-html="lawyer.short_content" data-listen-text />
           </div>
         </div>
       </div>

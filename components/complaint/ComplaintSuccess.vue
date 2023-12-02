@@ -10,12 +10,12 @@
         Plângerea ta a fost trimisă!
       </page-title>
 
-      <span class="subtitle">
+      <span class="subtitle" data-listen-text>
         Plângerea ta a fost trimisă către:
       </span>
       
       <span class="subtitle d-block mt-4">
-        <span class="font-weight-bold">{{ institutions }}</span>
+        <span class="font-weight-bold" data-listen-text>{{ institutions }}</span>
       </span>
     </div>
 
@@ -31,6 +31,7 @@
       <v-btn
         outlined
         color="#FFF"
+        data-listen-text
         class="return-button"
         @click="goHome"
       >

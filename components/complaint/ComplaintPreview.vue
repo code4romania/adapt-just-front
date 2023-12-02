@@ -10,7 +10,7 @@
         Plângerea ta
       </page-title>
 
-      <span class="subtitle">
+      <span class="subtitle" data-listen-text>
         Verifică conținutul plângerii și când ești sigur/ă că vrei să o trimiți, apasă <span class="font-weight-bold">Trimite.</span><br />
         Odată trimisă, ea va ajunge direct la <span class="font-weight-bold">{{ institutions }}</span>
       </span>
@@ -19,10 +19,10 @@
     <div class="form-container">
       <div class="preview-container">
         <div class="preview-text">
-          <span>Mă numesc <span class="highlight-text">{{ name }}</span></span>
-          <span v-if="cnp">, CNP <span class="highlight-text">{{ cnp }}</span></span>
-          <span v-if="victim === 'other'">&nbsp;și declar că în <span class="font-weight-bold">{{ location.name }}</span>&nbsp;s-au întâmplat următoarele</span>
-          <span v-else>
+          <span data-listen-text>Mă numesc <span class="highlight-text">{{ name }}</span></span>
+          <span v-if="cnp" data-listen-text>, CNP <span class="highlight-text">{{ cnp }}</span></span>
+          <span v-if="victim === 'other'" data-listen-text>&nbsp;și declar că în <span class="font-weight-bold">{{ location.name }}</span>&nbsp;s-au întâmplat următoarele</span>
+          <span v-else data-listen-text>
             , mă aflu
             <span v-if="location.city_label">&nbsp;în <span class="font-weight-bold">{{ location.city_label }}</span>&nbsp; în <span class="font-weight-bold">{{ location.name }}</span>&nbsp;și declar că:</span>
           </span>
@@ -31,26 +31,29 @@
         <div class="preview-text mt-4">
           <div v-for="(detail, i) in details" :key="`detail_${i}`" class="preview-detail">
             <div class="detail-bullet" />
-            <span class="highlight-text">{{ detailsText(detail) }}</span>
+            <span class="highlight-text" data-listen-text>{{ detailsText(detail) }}</span>
             <span v-if="i !== details.length - 1">;</span>
           </div>
 
           <div v-if="victim === 'other'" class="preview-detail">
             <div class="detail-bullet" />
-            <span class="font-weight-bold">{{ reason }}</span>
+            <span class="font-weight-bold" data-listen-text>{{ reason }}</span>
           </div>
         </div>
 
         <div v-if="type === 'move' && reason" class="mb-5 preview-text">
-          <span>Motivul pentru care vreau să mă mut este <span class="font-weight-bold">{{ reason }}</span></span>
+          <span data-listen-text>Motivul pentru care vreau să mă mut este <span class="font-weight-bold">{{ reason }}</span></span>
         </div>
 
         <div class="preview-text mt-4">
-          <span>Solicit ca datele mele personale să nu devină publice ca urmare a acestei plângeri, a cărei soluționare o cer.</span>
+          <span data-listen-text>Solicit ca datele mele personale să nu devină publice ca urmare a acestei plângeri, a cărei soluționare o cer.</span>
         </div>
 
         <div v-if="uploads.length > 0" class="preview-text mt-5">
           <span>Am atașat plângerii următoarele dovezi:</span>
+          <span data-listen-text style="display: none">
+            Am atașat plângerii {{ uploads.length }} {{ uploads.length === 1 ? 'fișier' : 'fișiere' }} cu dovezi
+          </span>
           <div class="mt-4">
             <div v-for="(upload, i) in uploads" :key="`upload_${i}`" class="preview-detail">
               <div class="detail-bullet" />

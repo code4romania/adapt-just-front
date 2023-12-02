@@ -84,4 +84,25 @@ export default {
   }
 }
 
+@media #{map-get($display-breakpoints, 'md-and-down')} {
+  .lawyer-page {
+    .lawyer-content {
+      width: auto !important;
+      margin-top: 180px !important;
+      margin-left: 40px !important;
+      margin-right: 40px !important;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .lawyer-page {
+    .lawyer-content {
+      margin-left: 20px !important;
+      margin-right: 20px !important;
+      margin-top: 40px !important;
+    }
+  }
+}
+
 </style>

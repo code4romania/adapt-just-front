@@ -10,7 +10,7 @@
         Ai dovezi?
       </page-title>
 
-      <span class="subtitle">
+      <span class="subtitle" data-listen-text>
         Dovezile pot fi orice poză, videoclip sau înregistrare
       </span>
     </div>

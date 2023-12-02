@@ -51,6 +51,11 @@ export default {
   },
   methods: {
     handleHide() {
+      if (this.isListen) {
+        speechSynthesis.cancel()
+        this.isListen = false
+      }
+
       this.$emit('hide')
     },
     handleListen() {
@@ -78,8 +83,15 @@ export default {
 
       const texts = []
       elements.forEach((element) => {
-        const innerText = element.innerText
-        texts.push(innerText)
+        let text = element.innerText || element.value
+
+        if (/^\d+$/.test(text)) {
+          const numbers = text.split('')
+          const spacedNumbers = numbers.map((number) => ` ${number}`)
+          text = spacedNumbers.join('')
+        }
+        
+        texts.push(text)
       })
 
       const text = texts.join('; ')

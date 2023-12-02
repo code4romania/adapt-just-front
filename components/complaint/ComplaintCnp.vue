@@ -10,31 +10,34 @@
         Care este CNP-ul tău?
       </page-title>
 
-      <span class="subtitle">
+      <span class="subtitle" data-listen-text>
         Scrie codul numeric personal
       </span>
     </div>
 
     <div class="form-container">
-      <div class="d-flex align-center">
+      <div
+        class="d-flex align-center"
+        :class="{ 'flex-column': $vuetify.breakpoint.smAndDown }"
+      >
         <form-text-input
           :value="cnpText"
           placeholder="Cod numeric personal"
           @input="handleChange"
         />
 
-        <record-button />
+        <record-button @input="handleChange" />
       </div>
       <record-text />
 
       <div class="upload-container">
-        <span class="upload-text">
+        <span class="upload-text" data-listen-text>
           Sau apasă mai jos și <span class="font-weight-bold">încarcă o poză cu buletinul</span> dacă îl ai
         </span>
 
         <form-upload
           :loading="loading"
-          text="Încarcă poza"
+          title="Încarcă poza"
           @change="handleUpload"
         />
       </div>
@@ -100,7 +103,7 @@ export default {
         return
       }
 
-      this.cnpText = text
+      this.cnpText = text.trim().replace(' ', '')
     },
     async handleUpload(file) {
       if (file) {

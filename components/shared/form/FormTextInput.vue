@@ -5,6 +5,7 @@
     outlined
     clearable
     color="#BDBDBD"
+    data-listen-text
     hide-details="auto"
     class="form-text-input"
     :placeholder="placeholder"
@@ -46,6 +47,7 @@ export default {
 <style lang="scss">
 
 .form-text-input {
+  width: 100%;
   padding: 9px 13px;
   border-radius: 6px;
   background: #FFF;

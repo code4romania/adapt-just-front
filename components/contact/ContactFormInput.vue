@@ -1,6 +1,6 @@
 <template>
   <div class="contact-form-input">
-    <label class="input-label mb-1" :for="$attrs.vid">
+    <label class="input-label mb-1" :for="$attrs.vid" data-listen-text>
       {{ $attrs.name }}
     </label>
 
@@ -16,9 +16,14 @@
         :outlined="outlined"
         :error-messages="errors"
         color="#D1D5DB"
+        data-listen-text
         v-bind="$attrs"
         v-on="$listeners"
-      />
+      >
+        <template v-slot:append-outer v-if="errors.length">
+          <span style="display: none;" data-listen-text>{{ errors[0] }}</span>
+        </template>
+      </v-text-field>
     </ValidationProvider>
   </div>
 </template>

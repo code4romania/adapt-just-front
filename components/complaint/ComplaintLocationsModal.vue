@@ -177,4 +177,39 @@ export default {
   }
 }
 
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .complaint-locations-modal {
+    .locations-header-content {
+      margin: 50px 30px 0 30px !important;
+
+      .search-input {
+        width: 75% !important;
+      }
+    }
+
+    .v-card__text {
+      padding-left: 50px !important;
+      padding-right: 50px !important;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .complaint-locations-modal {
+    .locations-header-content {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+
+      .search-input {
+        width: 100% !important;
+      }
+    }
+
+    .v-card__text {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+  }
+}
+
 </style>

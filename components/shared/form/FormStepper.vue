@@ -1,6 +1,6 @@
 <template>
   <div class="form-stepper">
-    <span class="stepper-text">
+    <span class="stepper-text" data-listen-text>
       Pasul {{ step }} din {{ steps }}
     </span>
 
@@ -88,6 +88,12 @@ export default {
         }
       }
     }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .form-stepper {
+    flex-direction: column;
   }
 }
 

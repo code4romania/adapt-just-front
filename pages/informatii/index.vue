@@ -6,7 +6,7 @@
           Informații
         </page-title>
 
-        <div class="subtitle">
+        <div class="subtitle" data-listen-text>
           În caz că nu ești sigur că ai nevoie de ajutor,<br />citește informații despre tipurile de abuz și<br />lucrurile la care trebuie să fii atent
         </div>
       </div>
@@ -108,6 +108,33 @@ export default {
         .v-skeleton-loader__button {
           width: 100%;
         }
+      }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'md-and-down')} {
+  .articles-page {
+    .articles-content {
+      width: auto !important;
+      margin-left: 40px !important;
+      margin-right: 40px !important;
+
+      .title-container {
+        margin-top: 160px !important;
+      }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .articles-page {
+    .articles-content {
+      margin-left: 20px !important;
+      margin-right: 20px !important;
+
+      .title-container {
+        margin-top: 40px !important;
       }
     }
   }

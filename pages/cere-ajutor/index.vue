@@ -333,4 +333,30 @@ export default {
   }
 }
 
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .complaint-page {
+    padding-top: 180px !important;
+    
+    .complaint-content {
+      margin-left: 40px !important;
+      margin-right: 40px !important;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .complaint-page {
+    padding-top: 60px !important;
+
+    .complaint-content {
+      margin-left: 20px !important;
+      margin-right: 20px !important;
+    }
+
+    .form-actions {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
 </style>

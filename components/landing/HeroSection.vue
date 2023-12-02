@@ -3,15 +3,24 @@
     <div class="shape1" />
     <div class="shape2" />
     <div class="shape3" />
-    <div class="shape4" />
-    <div class="shape5" />
+    <div v-if="$vuetify.breakpoint.smAndUp" class="shape4" />
+    <div v-if="$vuetify.breakpoint.smAndUp" class="shape5" />
 
     <v-row no-gutters style="height: 100%; z-index: 1;">
       <v-col
-        cols="7"
+        cols="12"
+        sm="7"
         class="d-flex align-center justify-end"
+        :class="{
+          'justify-center': $vuetify.breakpoint.xsOnly,
+        }"
       >
-        <div class="mr-12">
+        <div
+          :class="{
+            'mx-12': $vuetify.breakpoint.mdAndUp,
+            'mx-6': $vuetify.breakpoint.smAndDown,
+          }"
+        >
           <PageTitle>
             Cum te putem ajuta?
           </PageTitle>
@@ -28,8 +37,12 @@
       </v-col>
 
       <v-col
-        cols="5"
+        cols="12"
+        sm="5"
         class="d-flex align-center"
+        :class="{
+          'justify-center': $vuetify.breakpoint.xsOnly,
+        }"
       >
         <div>
           <v-img
@@ -37,6 +50,7 @@
             alt="Hero"
             width="334px"
             height="404px"
+            class="hero-image"
           />
         </div>
       </v-col>
@@ -151,6 +165,11 @@ export default {}
     font-family: Inter, sans-serif;
   }
 
+  .hero-image {
+    width: 334px;
+    height: 404px;
+  }
+
   .show-more {
     padding: 0.5rem 1rem !important;
 
@@ -162,6 +181,15 @@ export default {}
       font-style: normal;
       font-family: Inter, sans-serif;
       text-decoration-line: underline;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .hero-section {
+    .hero-image {
+      width: 207px !important;
+      height: 250px !important;
     }
   }
 }

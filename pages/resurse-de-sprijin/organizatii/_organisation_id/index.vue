@@ -10,28 +10,31 @@
 
         <div v-else-if="organisation">
           <v-card class="organisation-card">
-            <div class="d-flex">
+            <div
+              class="d-flex"
+              :class="{'flex-column': $vuetify.breakpoint.smAndDown}"
+            >
               <div v-if="organisation.upload" class="organisation-image">
                 <v-img :src="organisation.upload.dataUrl" />
               </div>
 
               <div>
-                <span class="organisation-name">
+                <span class="organisation-name" data-listen-text>
                   {{ organisation.name }}
                 </span>
 
                 <div v-if="organisation.short_content">
-                  <span class="organisation-description">
+                  <span class="organisation-description" data-listen-text>
                     {{ organisation.short_content }}
                   </span>
                 </div>
 
                 <div v-if="organisation.phone" class="mt-4">
-                  <span class="contact-label">Contact</span>
+                  <span class="contact-label" data-listen-text>Contact</span>
 
                   <div class="d-flex align-center phone-container" @click="callPhone">
                     <v-icon color="#000" size="24px">mdi-phone</v-icon>
-                    <span class="phone-text ml-1">
+                    <span class="phone-text ml-1" data-listen-text>
                       {{ organisation.phone }}
                     </span>
                   </div>
@@ -154,6 +157,27 @@ export default {
         height: 560px;
         border-radius: 24px !important;
       }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'md-and-down')} {
+  .organisation-page {
+    .organisation-content {
+      width: auto !important;
+      margin-top: 180px !important;
+      margin-left: 40px !important;
+      margin-right: 40px !important;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .organisation-page {
+    .organisation-content {
+      margin-left: 20px !important;
+      margin-right: 20px !important;
+      margin-top: 40px !important;
     }
   }
 }

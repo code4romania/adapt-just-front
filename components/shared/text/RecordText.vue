@@ -1,6 +1,9 @@
 <template>
-  <div class="record-text-container">
-    <span class="record-text">
+  <div
+    class="record-text-container"
+    :class="{ 'text-center': $vuetify.breakpoint.smAndDown }"
+  >
+    <span class="record-text" data-listen-text>
       Dacă nu poți să scrii, <span class="font-weight-bold">ține apăsat</span> pe microfon ca să vorbești
     </span>
   </div>

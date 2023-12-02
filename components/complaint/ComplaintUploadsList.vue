@@ -1,7 +1,7 @@
 <template>
   <div class="complaint-uploads">
     <div>
-      <span class="uploads-title">
+      <span class="uploads-title" data-listen-text>
         {{ title }}
       </span>
     </div>

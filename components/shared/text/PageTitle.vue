@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'PageTitle',  
+  name: 'PageTitle',
 }
 
 </script>
@@ -23,6 +23,19 @@ export default {
   letter-spacing: -0.24px;
   text-transform: uppercase;
   font-family: Inter, sans-serif;
+}
+
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .page-title {
+    font-size: 2.5rem;
+    line-height: 48px;
+  }
+}
+
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .page-title {
+    font-size: 36px !important;
+  }
 }
 
 </style>

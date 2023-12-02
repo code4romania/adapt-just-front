@@ -5,7 +5,7 @@
 
       <div class="mt-8">
         <page-title>Numere de telefon</page-title>
-        <span class="subtitle">
+        <span class="subtitle" data-listen-text>
           Apasă pe numărul de telefon ca să suni
         </span>
       </div>
@@ -25,17 +25,18 @@
             v-for="(phone, i) in phoneNumbers"
             :key="`phone_${i}`"
             class="py-0 phone-col"
-            cols="6"
+            cols="12"
+            sm="6"
           >
             <v-card
               class="phone-card"
               @click="callPhone(phone.phone)"
             >
               <v-card-text class="pa-0">
-                <span class="phone-name">
+                <span class="phone-name" data-listen-text>
                   {{ phone.name }}
                 </span>
-                <span class="phone-number">
+                <span class="phone-number" data-listen-text>
                   {{ phone.phone }}
                 </span>
               </v-card-text>
@@ -134,6 +135,27 @@ export default {
           }
         }
       }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'md-and-down')} {
+  .resource-page {
+    .resource-content {
+      width: auto !important;
+      margin-top: 180px !important;
+      margin-left: 40px !important;
+      margin-right: 40px !important;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .resource-page {
+    .resource-content {
+      margin-left: 20px !important;
+      margin-right: 20px !important;
+      margin-top: 40px !important;
     }
   }
 }

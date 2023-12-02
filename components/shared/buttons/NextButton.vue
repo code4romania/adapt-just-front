@@ -4,17 +4,21 @@
     class="next-button"
     :loading="loading"
     :disabled="disabled"
+    :block="$vuetify.breakpoint.xsOnly"
+    :class="{ 'mb-4': $vuetify.breakpoint.xsOnly }"
     @click.native="$emit('click')"
   >
     {{ text }}
 
-    <v-img
-      src="/images/website/icons/arrow-right.svg"
-      alt="Arrow right"
-      width="24px"
-      height="24px"
-      class="ml-2"
-    />
+    <div>
+      <v-img
+        src="/images/website/icons/arrow-right.svg"
+        alt="Arrow right"
+        width="24px"
+        height="24px"
+        class="ml-2"
+      />
+    </div>
   </v-btn>
 </template>
 
@@ -55,6 +59,12 @@ export default {
     font-style: normal;
     color: $gray900 !important;
     font-family: Inter, sans-serif;
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .next-button {
+    height: 50px !important;
   }
 }
 

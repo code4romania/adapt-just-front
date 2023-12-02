@@ -3,6 +3,7 @@
     :to="to"
     outlined
     color="#FFF"
+    data-listen-text
     class="home-button"
   >
     <v-img

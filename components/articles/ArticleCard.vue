@@ -9,15 +9,15 @@
       <div v-else class="article-image" />
     </div>
 
-    <v-card-title class="pa-0 px-6 mb-4">
+    <v-card-title class="pa-0 px-6 mb-4" data-listen-text>
       {{ article.name }}
     </v-card-title>
 
     <v-card-text class="pa-0 px-6">
-      <div v-html="article.short_content" class="article-content" />
+      <div v-html="article.short_content" class="article-content" data-listen-text />
     </v-card-text>
     <v-card-actions>
-      <v-btn text block color="primary" :to="`/informatii/${article.id}`">
+      <v-btn text block color="primary" :to="`/informatii/${article.id}`" data-listen-text>
         Citește mai mult
         <v-icon right>mdi-arrow-right</v-icon>
       </v-btn>

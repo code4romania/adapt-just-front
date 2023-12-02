@@ -3,7 +3,7 @@
     <ValidationObserver ref="form">
       <v-form @submit.prevent="submit">
         <v-row>
-          <v-col cols="6">
+          <v-col cols="12" sm="6">
             <contact-form-input
               v-model="form.first_name"
               vid="form.first_name"
@@ -12,7 +12,7 @@
               placeholder="Nume"
             />
           </v-col>
-          <v-col cols="6">
+          <v-col cols="12" sm="6">
             <contact-form-input
               v-model="form.last_name"
               vid="form.last_name"
@@ -65,7 +65,8 @@
                 :error-messages="errors"
               >
                 <template v-slot:label>
-                  <span class="terms-label">Prin selectarea acestei opțiuni, sunteți de acord cu <span class="font-weight-bold link" @click="openLink1">Politica de confidențialitate</span> și <span class="font-weight-bold link" @click="openLink2">Politica de utilizare cookies.</span></span>
+                  <span class="terms-label" data-listen-text>Prin selectarea acestei opțiuni, sunteți de acord cu <span class="font-weight-bold link" @click="openLink1">Politica de confidențialitate</span> și <span class="font-weight-bold link" @click="openLink2">Politica de utilizare cookies.</span></span>
+                  <span v-if="errors.length" style="display: none;" data-listen-text>{{ errors[0] }}</span>
                 </template>
               </v-switch>
             </ValidationProvider>
@@ -96,6 +97,7 @@
               large
               type="submit"
               color="#FBBF24"
+              data-listen-text
               :loading="loading"
               class="white--text"
               @click="submit"
@@ -106,7 +108,7 @@
         </v-row>
         <v-row v-if="successSent">
           <v-col>
-            <v-alert type="success">Mesajul a fost trimis cu succes.</v-alert>
+            <v-alert type="success" data-listen-text>Mesajul a fost trimis cu succes.</v-alert>
           </v-col>
         </v-row>
       </v-form>

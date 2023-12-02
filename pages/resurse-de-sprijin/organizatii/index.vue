@@ -31,7 +31,8 @@
               v-for="(organisation, i) in organisations"
               :key="`organisation_${i}`"
               class="py-0 organisation-col"
-              cols="6"
+              cols="12"
+              md="6"
             >
               <v-card class="organisation-card" height="512px">
                 <v-img
@@ -42,16 +43,16 @@
                 <div v-else class="organisation-image" />
 
                 <v-card-text class="pa-0 organisation-card-content">
-                  <span class="organisation-name">
+                  <span class="organisation-name" data-listen-text>
                     {{ organisation.name }}
                   </span>
-                  <span class="organisation-description">
+                  <span class="organisation-description" data-listen-text>
                     {{ organisation.short_content }}
                   </span>
                 </v-card-text>
 
                 <v-card-actions>
-                  <v-btn block color="#FBBF24" height="50px" @click="goToOrganisation(organisation.id)">
+                  <v-btn block color="#FBBF24" height="50px" data-listen-text @click="goToOrganisation(organisation.id)">
                     Vezi mai mult
                   </v-btn>
                 </v-card-actions>
@@ -180,6 +181,27 @@ export default {
         height: 50px;
         margin-top: 32px;
       }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'md-and-down')} {
+  .organisations-page {
+    .organisations-content {
+      width: auto !important;
+      margin-top: 180px !important;
+      margin-left: 40px !important;
+      margin-right: 40px !important;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .organisations-page {
+    .organisations-content {
+      margin-left: 20px !important;
+      margin-right: 20px !important;
+      margin-top: 40px !important;
     }
   }
 }

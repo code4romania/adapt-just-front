@@ -10,19 +10,22 @@
         Cum te cheamă?
       </page-title>
 
-      <span class="subtitle">
+      <span class="subtitle" data-listen-text>
         Scrie numele mic și numele de familie
       </span>
     </div>
 
     <div class="form-container">
-      <div class="d-flex align-center">
+      <div
+        class="d-flex align-center"
+        :class="{ 'flex-column': $vuetify.breakpoint.smAndDown }"
+      >
         <form-text-input
           :value="nameText"
           @input="nameText = $event"
         />
 
-        <record-button />
+        <record-button @input="nameText = $event" />
       </div>
       <record-text />
     </div>

@@ -7,12 +7,12 @@
     @click="$emit('click')"
   >
     <div class="button-content">
-      <span class="d-block button-title">
+      <span class="d-block button-title" data-listen-text>
         {{ title }}
       </span>
 
       <div v-if="subtitle">
-        <span class="d-block button-subtitle">
+        <span class="d-block button-subtitle" data-listen-text>
           {{ subtitle }}
         </span>
       </div>

@@ -10,7 +10,7 @@
         Semnează plângerea
       </page-title>
 
-      <span class="subtitle">
+      <span class="subtitle" data-listen-text>
         Desenează cu degetul pe ecran semnătura ta sau scrie-ți numele
       </span>
     </div>
@@ -27,6 +27,7 @@
         <v-btn
           v-if="signature"
           block
+          data-listen-text
           color="#9CA3AF40"
           @click="clear"
         >

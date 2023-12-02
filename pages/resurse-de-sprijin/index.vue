@@ -60,4 +60,31 @@ export default {
   }
 }
 
+@media #{map-get($display-breakpoints, 'md-and-down')} {
+  .resources-page {
+    .resources-content {
+      width: auto !important;
+      margin-left: 40px !important;
+      margin-right: 40px !important;
+
+      .title-container {
+        margin-top: 160px !important;
+      }
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .resources-page {
+    .resources-content {
+      margin-left: 20px !important;
+      margin-right: 20px !important;
+
+      .title-container {
+        margin-top: 40px !important;
+      }
+    }
+  }
+}
+
 </style>

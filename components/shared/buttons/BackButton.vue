@@ -2,15 +2,19 @@
   <v-btn
     outlined
     color="#FFF"
+    data-listen-text
     class="back-button"
+    :block="$vuetify.breakpoint.xsOnly"
     @click.native="$emit('click')"
   >
-    <v-img
-      src="/images/website/icons/form-arrow-left.svg"
-      width="24px"
-      height="24px"
-      class="mr-2"
-    />
+    <div>
+      <v-img
+        src="/images/website/icons/form-arrow-left.svg"
+        width="24px"
+        height="24px"
+        class="mr-2"
+      />
+    </div>
 
     Înapoi
   </v-btn>
@@ -33,6 +37,12 @@
     line-height: 28px;
     font-style: normal;
     font-family: Inter, sans-serif;
+  }
+}
+
+@media #{map-get($display-breakpoints, 'xs-only')} {
+  .back-button {
+    height: 50px !important;
   }
 }
 

@@ -15,7 +15,7 @@
     </div>
 
     <div class="button-content">
-      <span class="d-block button-title">
+      <span class="d-block button-title" data-listen-text>
         {{ text }}
       </span>
     </div>
@@ -57,6 +57,7 @@ export default {
 
 .complaint-location-button {
   flex: 1;
+  width: 100%;
   border-radius: 8px;
   height: auto !important;
   background-color: $yellow50;

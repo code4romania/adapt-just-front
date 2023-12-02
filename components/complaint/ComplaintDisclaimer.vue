@@ -9,17 +9,17 @@
           max-width="40px"
         />
 
-        <span class="title-text">
+        <span class="title-text" data-listen-text>
           Atenție!
         </span>
       </div>
     </div>
 
     <div class="form-container">
-      <p class="disclaimer-text">
+      <p class="disclaimer-text" data-listen-text>
         Înainte de a completa reclamația, este important să știi că informațiile pe care le vei furniza vor fi transmise către URMĂTOARELE entități: <span class="font-weight-bold">{{ institutions }}</span>
       </p>
-      <p class="disclaimer-text">
+      <p class="disclaimer-text" data-listen-text>
         Dacă ai întrebări sau îngrijorări în legătură cu acest proces, te rugăm să ceri ajutorul unei persoane în care ai încredere. Este important să înțelegi că informațiile pe care le furnizezi vor fi tratate cu confidențialitate și respect față de drepturile tale.
       </p>
     </div>
