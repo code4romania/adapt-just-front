@@ -9,7 +9,7 @@
       <div v-else class="article-image" />
     </div>
 
-    <v-card-title class="pa-0 px-6 mb-4 text-uppercase" data-listen-text>
+    <v-card-title class="pa-0 px-6 mb-4 text-uppercase col-lg-auto article-title" data-listen-text>
       {{ article.name }}
     </v-card-title>
 
@@ -59,15 +59,22 @@ export default {
     border-radius: 12px;
     background-color: #D1D5DB;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.10);
+
   }
 
-  .v-card-title {
+  .v-card__title.article-title {
     color: $gray900;
     font-size: 20px;
     font-weight: 500;
     line-height: 28px;
     font-style: normal;
     font-family: Inter, sans-serif;
+    height: 56px;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
   }
 
   .v-card__text {
@@ -83,6 +90,12 @@ export default {
       font-style: normal;
       text-transform: uppercase;
       font-family: Inter, sans-serif;
+
+      text-overflow: ellipsis;
+      display: -webkit-box ;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+
     }
   }
 
