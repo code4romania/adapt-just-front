@@ -9,7 +9,7 @@
       <div v-else class="article-image" />
     </div>
 
-    <v-card-title class="pa-0 px-6 mb-4" data-listen-text>
+    <v-card-title class="pa-0 px-6 mb-4 text-uppercase" data-listen-text>
       {{ article.name }}
     </v-card-title>
 

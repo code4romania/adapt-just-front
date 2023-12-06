@@ -65,7 +65,7 @@
                 :error-messages="errors"
               >
                 <template v-slot:label>
-                  <span class="terms-label" data-listen-text>Prin selectarea acestei opțiuni, sunteți de acord cu <span class="font-weight-bold link" @click="openLink1">Politica de confidențialitate</span> și <span class="font-weight-bold link" @click="openLink2">Politica de utilizare cookies.</span></span>
+                  <span class="terms-label" data-listen-text>Prin selectarea acestei opțiuni, sunteți de acord cu <span class="font-weight-bold link" @click="openLink1">Termenii și condițiile</span> și <span class="font-weight-bold link" @click="openLink2">Politica de utilizare cookies.</span></span>
                   <span v-if="errors.length" style="display: none;" data-listen-text>{{ errors[0] }}</span>
                 </template>
               </v-switch>
@@ -148,10 +148,10 @@ export default {
   },
   methods: {
     openLink1() {
-      window.open('https://www.google.com', '_blank')
+      window.open('/termeni-si-conditii', '_blank')
     },
     openLink2() {
-      window.open('https://www.google.com', '_blank')
+      window.open('/politica-cookie', '_blank')
     },
     onError(err) {
       console.log(err)

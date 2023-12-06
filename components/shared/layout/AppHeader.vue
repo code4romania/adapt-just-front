@@ -54,7 +54,7 @@
           plain
           color="#264767"
           :ripple="false"
-          to="resurse-de-sprijin"
+          to="/resurse-de-sprijin"
           class="app-header-link mr-8"
         >
           Resurse de sprijin
@@ -116,7 +116,6 @@
         </div>
       </div>
     </v-app-bar>
-
     <v-navigation-drawer
       v-model="drawer"
       v-if="$vuetify.breakpoint.smAndDown"
@@ -239,7 +238,7 @@ export default {
 
 .app-drawer {
   z-index: 101;
-  
+
   .v-list-item {
     font-size: 16px;
     color: $gray700;

@@ -4,13 +4,13 @@
       <home-button v-if="showHomeButton" />
 
       <complaint-victim
-        v-if="section === 'victim'"
+        v-show="section === 'victim'"
         :victim="victim"
         @next="handleVictimNext"
       />
 
       <complaint-type
-        v-if="section === 'type'"
+        v-show="section === 'type'"
         :type="type"
         :victim="victim"
         @back="section = 'victim'"
@@ -18,19 +18,19 @@
       />
 
       <complaint-disclaimer
-        v-if="section === 'disclaimer'"
+        v-show="section === 'disclaimer'"
         @next="section = 'data'"
         @back="handleDisclaimerBack"
       />
 
       <complaint-data
-        v-if="section === 'data'"
+        v-show="section === 'data'"
         @back="section = 'disclaimer'"
         @next="section = 'name'"
       />
 
       <complaint-name
-        v-if="section === 'name'"
+        v-show="section === 'name'"
         :name="name"
         :steps="steps"
         @next="section = 'cnp'"
@@ -38,7 +38,7 @@
       />
 
       <complaint-cnp
-        v-if="section === 'cnp'"
+        v-show="section === 'cnp'"
         :cnp="cnp"
         :steps="steps"
         :id-card-upload="idCardUpload"
@@ -47,7 +47,7 @@
       />
 
       <complaint-location
-        v-if="section === 'location'"
+        v-show="section === 'location'"
         :lat="lat"
         :lng="lng"
         :steps="steps"
@@ -58,7 +58,7 @@
       />
 
       <complaint-details
-        v-if="section === 'details'"
+        v-show="section === 'details'"
         :steps="steps"
         :reason="reason"
         :details="details"
@@ -67,7 +67,7 @@
       />
 
       <complaint-proof
-        v-if="section === 'proof'"
+        v-show="section === 'proof'"
         :steps="steps"
         :proof-type="proofType"
         @next="handleProofNext"
@@ -75,7 +75,7 @@
       />
 
       <complaint-uploads
-        v-if="section === 'uploads'"
+        v-show="section === 'uploads'"
         :steps="steps"
         :uploads="uploads"
         @back="section = 'proof'"
@@ -83,7 +83,7 @@
       />
 
       <complaint-location-to
-        v-if="section === 'locationTo'"
+        v-show="section === 'locationTo'"
         :steps="steps"
         :locationTo="locationTo"
         :locationToType="locationToType"
@@ -92,7 +92,7 @@
       />
 
       <complaint-moving-reason
-        v-if="section === 'movingReason'"
+        v-show="section === 'movingReason'"
         :steps="steps"
         :reason="reason"
         @next="section = 'preview'"
@@ -100,7 +100,7 @@
       />
 
       <complaint-other-reason
-        v-if="section === 'otherReason'"
+        v-show="section === 'otherReason'"
         :steps="steps"
         :reason="reason"
         @next="section = 'proof'"
@@ -108,14 +108,14 @@
       />
 
       <complaint-preview
-        v-if="section === 'preview'"
+        v-show="section === 'preview'"
         :steps="steps"
         @back="handlePreviewBack"
         @next="section = 'signature'"
       />
 
       <complaint-signature
-        v-if="section === 'signature'"
+        v-show="section === 'signature'"
         :steps="steps"
         :signature="signature"
         @back="section = 'preview'"
@@ -123,7 +123,7 @@
       />
 
       <complaint-success
-        v-if="section === 'success'"
+        v-show="section === 'success'"
         :steps="steps"
       />
     </div>
@@ -336,7 +336,7 @@ export default {
 @media #{map-get($display-breakpoints, 'sm-and-down')} {
   .complaint-page {
     padding-top: 180px !important;
-    
+
     .complaint-content {
       margin-left: 40px !important;
       margin-right: 40px !important;

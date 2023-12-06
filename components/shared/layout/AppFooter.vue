@@ -5,7 +5,7 @@
       <v-row>
         <v-col cols="12" lg="7" class="d-flex left-col">
           <div :class="{ 'd-flex flex-column align-center': $vuetify.breakpoint.xsOnly }">
-            <div class="footer-text" style="margin-bottom: 13px;">
+            <div class="footer-text" style="margin-bottom: 30px;">
               Un proiect realizat de
             </div>
             <v-img
@@ -22,7 +22,7 @@
             }"
             :class="{ 'd-flex flex-column align-center': $vuetify.breakpoint.xsOnly }"
           >
-            <div class="footer-text" style="margin-bottom: 35px;">
+            <div class="footer-text" style="margin-bottom: 30px;">
               Proiectat de
             </div>
             <v-img
@@ -39,13 +39,30 @@
             }"
             :class="{ 'd-flex flex-column align-center': $vuetify.breakpoint.xsOnly }"
           >
-            <div class="footer-text">
+            <div class="footer-text" style="margin-bottom: 30px;">
               Cu sprijinul
             </div>
             <v-img
+              contain
               src="/images/website/partners/ministerul-public.png"
               width="150px"
-              height="150px"
+              height="auto"
+            />
+          </div>
+          <div
+            :style="{
+              'margin-top': $vuetify.breakpoint.xsOnly ? '50px' : '0',
+              'margin-left': $vuetify.breakpoint.xsOnly ? '0' : '71px',
+            }"
+            :class="{ 'd-flex flex-column align-center': $vuetify.breakpoint.xsOnly }"
+          >
+            <div class="footer-text" style="margin-bottom: 30px;">
+              Partener media
+            </div>
+            <v-img
+              src="/images/website/partners/partener-media.svg"
+              width="60px"
+              height="auto"
             />
           </div>
         </v-col>
@@ -200,7 +217,7 @@
         text-align: center;
       }
     }
-    
+
     .footer-links {
       flex-direction: column;
     }

@@ -27,7 +27,7 @@
               <span data-listen-text>Citește textul în format accesibilizat</span>
             </div>
 
-            <div v-if="expanded" class="expanded-content">
+            <div v-show="expanded" class="expanded-content">
               <div class="d-flex align-center">
                 <div>
                   <v-img
@@ -112,7 +112,7 @@
                 >
                   <div>
                     <div>
-                      <span class="partners-section-subtitle" data-listen-text>
+                      <span class="partners-section-subtitle mb-6 d-block" data-listen-text>
                         Proiect derulat de:
                       </span>
                     </div>
@@ -137,6 +137,7 @@
                       </span>
                     </div>
                     <v-img
+                        contain
                       width="166px"
                       height="166px"
                       src="/images/website/partners/ministerul-public.png"
@@ -163,6 +164,21 @@
                   <span data-listen-text style="display: none">
                     Code for Romania
                   </span>
+                </div>
+              </div>
+              <div style="margin-top: 50px;">
+                <div>
+                  <span class="partners-section-subtitle" data-listen-text>
+                    Partener media:
+                  </span>
+                </div>
+                <div style="margin-top: 46px;">
+                  <v-img
+                    contain
+                    width="100px"
+                    height="auto"
+                    src="/images/website/partners/partener-media.svg"
+                  />
                 </div>
               </div>
             </div>

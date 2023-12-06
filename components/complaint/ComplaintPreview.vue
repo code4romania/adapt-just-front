@@ -24,7 +24,7 @@
           <span v-if="victim === 'other'" data-listen-text>&nbsp;și declar că în <span class="font-weight-bold">{{ location.name }}</span>&nbsp;s-au întâmplat următoarele</span>
           <span v-else data-listen-text>
             , mă aflu
-            <span v-if="location.city_label">&nbsp;în <span class="font-weight-bold">{{ location.city_label }}</span>&nbsp; în <span class="font-weight-bold">{{ location.name }}</span>&nbsp;și declar că:</span>
+            <span v-if="location?.city_label">&nbsp;în <span class="font-weight-bold">{{ location.city_label }}</span>&nbsp; în <span class="font-weight-bold">{{ location.name }}</span>&nbsp;și declar că:</span>
           </span>
         </div>
 

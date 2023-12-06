@@ -1,10 +1,10 @@
 <template>
   <div class="hero-section">
-    <div class="shape1" />
-    <div class="shape2" />
-    <div class="shape3" />
-    <div v-if="$vuetify.breakpoint.smAndUp" class="shape4" />
-    <div v-if="$vuetify.breakpoint.smAndUp" class="shape5" />
+<!--    <div class="shape1" />-->
+<!--    <div class="shape2" />-->
+<!--    <div class="shape3" />-->
+<!--    <div v-if="$vuetify.breakpoint.mdAndUp" class="shape4" />-->
+<!--    <div v-if="$vuetify.breakpoint.mdAndUp" class="shape5" />-->
 
     <v-row no-gutters style="height: 100%; z-index: 1;">
       <v-col
@@ -99,13 +99,13 @@ export default {}
     height: 228.62px;
     position: absolute;
     filter: blur(75px);
-    transform: rotate(123.699deg);
+    //transform: rotate(123.699deg);
     fill: rgba(252, 211, 77, 0.30);
   }
 
   .shape2 {
     position: absolute;
-    left: -20px;
+    left: 0px;
     bottom: 69px;
     width: 402px;
     height: 398px;
@@ -137,7 +137,7 @@ export default {}
     height: 299.351px;
     filter: blur(75px);
     position: absolute;
-    transform: rotate(40.1deg);
+    //transform: rotate(40.1deg);
     fill: rgba(245, 158, 11, 0.10);
   }
 
@@ -149,7 +149,7 @@ export default {}
     height: 165.453px;
     filter: blur(75px);
     position: absolute;
-    transform: rotate(40.1deg);
+    //transform: rotate(40.1deg);
     fill: rgba(245, 158, 11, 0.10);
   }
 
