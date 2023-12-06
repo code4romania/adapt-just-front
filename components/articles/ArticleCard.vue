@@ -75,6 +75,7 @@ export default {
     display: -webkit-box !important;
     -webkit-line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
+    word-break: normal !important;
   }
 
   .v-card__text {
