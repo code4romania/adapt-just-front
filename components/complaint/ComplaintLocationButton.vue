@@ -101,4 +101,28 @@ export default {
   }
 }
 
+
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .complaint-location-button {
+    .v-btn__content {
+      .button-content {
+        .button-title {
+          width: 100%;
+          color: $gray900;
+          font-size: 14px !important;
+          font-weight: 600;
+          overflow: hidden;
+          text-align: left;
+          line-height: 20px;
+          font-style: normal;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          text-transform: uppercase;
+          font-family: Inter, sans-serif;
+        }
+      }
+    }
+  }
+}
+
 </style>

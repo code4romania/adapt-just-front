@@ -60,7 +60,7 @@ export default {
     text-transform: uppercase;
     font-family: Inter, sans-serif;
   }
-    
+
   .disclaimer-text {
     color: $gray900;
     font-size: 24px;
@@ -71,6 +71,16 @@ export default {
     letter-spacing: -0.12px;
     text-transform: uppercase;
     font-family: Inter, sans-serif;
+  }
+}
+
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+
+  .complaint-disclaimer {
+    .disclaimer-text {
+      font-size: 20px !important;
+      line-height: 30px !important;
+    }
   }
 }
 

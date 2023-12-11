@@ -91,6 +91,8 @@ export default {
         font-style: normal;
         text-transform: uppercase;
         font-family: Inter, sans-serif;
+        white-space: normal !important;
+        text-align: left;
       }
 
       .button-subtitle {
@@ -102,6 +104,8 @@ export default {
         letter-spacing: -0.1px;
         text-transform: uppercase;
         font-family: Inter, sans-serif;
+        white-space: normal !important;
+        text-align: left;
       }
     }
 
@@ -114,5 +118,24 @@ export default {
     }
   }
 }
+
+
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .form-radio-button {
+    .v-btn__content {
+      .button-content {
+        .button-title {
+          font-size: 14px !important;
+          line-height: 20px !important;
+        }
+        .button-subtitle {
+          font-size: 12px !important;
+          line-height: 20px !important;
+        }
+      }
+    }
+  }
+}
+
 
 </style>

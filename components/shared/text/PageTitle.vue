@@ -27,15 +27,10 @@ export default {
 
 @media #{map-get($display-breakpoints, 'sm-and-down')} {
   .page-title {
-    font-size: 2.5rem;
-    line-height: 48px;
+    font-size: 30px !important;
+    line-height: 30px;
   }
 }
 
-@media #{map-get($display-breakpoints, 'sm-and-down')} {
-  .page-title {
-    font-size: 36px !important;
-  }
-}
 
 </style>

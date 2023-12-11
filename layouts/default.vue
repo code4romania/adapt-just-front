@@ -43,6 +43,13 @@ export default {
     AppActions,
     AppHideDialog,
   },
+  head () {
+    return {
+      meta: [
+        { hid: 'og:image', property: 'og:image', content: '/images/website/ceasul-bun-share.png' }
+      ]
+    }
+  },
   data() {
     return {
       hideApp: false,

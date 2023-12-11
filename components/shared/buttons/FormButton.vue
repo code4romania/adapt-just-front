@@ -11,6 +11,7 @@
       v-if="icon"
       :src="icon"
       max-width="100px"
+      class="button-icon"
     />
 
     <div class="button-content">
@@ -29,7 +30,8 @@
         src="/images/website/icons/form-arrow-right.svg"
         width="43px"
         height="43px"
-        class="ml-3"
+        class="ml-3 button-arrow"
+
       />
     </div>
   </v-btn>
@@ -110,6 +112,8 @@ export default {
         letter-spacing: -0.12px;
         text-transform: uppercase;
         font-family: Inter, sans-serif;
+        white-space: normal !important;
+        text-align: left;
       }
 
       .subtitle-container {
@@ -133,14 +137,41 @@ export default {
       }
     }
   }
+
 }
 
 @media #{map-get($display-breakpoints, 'sm-and-down')} {
   .form-button {
     padding: 28px !important;
+    .v-btn__content {
+      .button-content {
+        margin-left: 15px !important;
 
-    .button-content {
-      margin-left: 30px !important;
+        .button-title {
+          font-size: 16px;
+          line-height: 20px;
+          letter-spacing: -0.12px;
+
+        }
+        .subtitle-container {
+          .button-subtitle {
+            white-space: initial !important;
+            margin-top: 16px;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: -0.1px;
+          }
+        }
+      }
+    }
+
+    .button-icon{
+      max-width: 50px !important;
+    }
+
+    .button-arrow{
+      width: 20px !important;
+      height: 20px !important;
     }
   }
 }

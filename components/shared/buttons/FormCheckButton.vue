@@ -10,6 +10,7 @@
       v-if="icon"
       :src="icon"
       max-width="64px"
+      class="form-check-button-icon"
     />
 
     <div class="button-content">
@@ -91,6 +92,7 @@ export default {
         font-style: normal;
         text-transform: uppercase;
         font-family: Inter, sans-serif;
+        text-align: left;
       }
     }
 
@@ -103,5 +105,26 @@ export default {
     }
   }
 }
+
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .form-check-button {
+    .v-btn__content {
+      .button-content {
+        .button-title {
+          font-size: 14px !important;
+          font-weight: 600;
+          line-height: 18px;
+          white-space: normal !important;
+        }
+      }
+
+    }
+    .form-check-button-icon{
+      max-width: 30px !important;
+    }
+  }
+}
+
+
 
 </style>
