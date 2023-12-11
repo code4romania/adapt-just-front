@@ -46,7 +46,7 @@ export default {
   head () {
     return {
       meta: [
-        { hid: 'og:image', property: 'og:image', content: '/images/website/ceasul-bun-share.png' }
+        { hid: 'og:image', property: 'og:image', content: 'https://www.cerajutor.ro/images/website/ceasul-bun-share.png' }
       ]
     }
   },
