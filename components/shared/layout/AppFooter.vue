@@ -8,11 +8,13 @@
             <div class="footer-text" style="margin-bottom: 30px;">
               Un proiect realizat de
             </div>
-            <v-img
-              src="/images/website/partners/crj.png"
-              width="134px"
-              height="94px"
-            />
+            <a href="https://www.crj.ro" target="_blank">
+              <v-img
+                src="/images/website/partners/crj.png"
+                width="134px"
+                height="94px"
+              />
+            </a>
           </div>
 
           <div
@@ -25,11 +27,13 @@
             <div class="footer-text" style="margin-bottom: 30px;">
               Proiectat de
             </div>
-            <v-img
-              src="/images/website/partners/c4r.png"
-              width="168px"
-              height="52px"
-            />
+            <a href="https://www.code4.ro/ro" target="_blank">
+              <v-img
+                src="/images/website/partners/c4r.png"
+                width="168px"
+                height="52px"
+              />
+            </a>
           </div>
 
           <div
@@ -42,12 +46,14 @@
             <div class="footer-text" style="margin-bottom: 30px;">
               Cu sprijinul
             </div>
-            <v-img
-              contain
-              src="/images/website/partners/ministerul-public.png"
-              width="150px"
-              height="auto"
-            />
+            <a href="https://www.mpublic.ro" target="_blank">
+              <v-img
+                contain
+                src="/images/website/partners/ministerul-public.png"
+                width="150px"
+                height="auto"
+              />
+            </a>
           </div>
           <div
             :style="{
@@ -59,11 +65,13 @@
             <div class="footer-text" style="margin-bottom: 30px;">
               Partener media
             </div>
-            <v-img
-              src="/images/website/partners/partener-media.svg"
-              width="60px"
-              height="auto"
-            />
+            <a href="https://stareanatiei.ro" target="_blank">
+              <v-img
+                src="/images/website/partners/partener-media.svg"
+                width="60px"
+                height="auto"
+              />
+            </a>
           </div>
         </v-col>
 
