@@ -23,7 +23,9 @@ export default {
     recaptcha: {
       /* reCAPTCHA options */
       siteKey: process.env.RECAPTCHA_SITE_KEY // for example
-    }
+    },
+    STAGE: process.env.STAGE || 'development',
+    NUXT_PUBLIC_GTAG_ID: process.env.NUXT_PUBLIC_GTAG_ID,
   },
 
   privateRuntimeConfig: {
@@ -44,6 +46,7 @@ export default {
     { src: '~/plugins/helpers/form.js' },
     { src: '~/plugins/axios.js'},
     { src: '~/plugins/component-loader.js' },
+    { src: '~/plugins/analytics.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -67,7 +70,6 @@ export default {
         version: 3
       }
     ],
-    'nuxt-gtag'
   ],
 
   ssr: false,
@@ -145,7 +147,6 @@ export default {
       'Source Sans Pro': [600],
     }
   },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     plugins: [
