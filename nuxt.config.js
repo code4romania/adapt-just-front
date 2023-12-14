@@ -66,7 +66,8 @@ export default {
         hideBadge: false,
         version: 3
       }
-    ]
+    ],
+    'nuxt-gtag'
   ],
 
   ssr: false,
