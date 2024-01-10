@@ -28,6 +28,7 @@
                   text
                   class="text-none"
                   to="/admin/complaints"
+                  v-if="$user.hasPermission('ViewAny - complaints')"
                 >
                   Raportări
                 </v-btn>
@@ -35,6 +36,7 @@
                   text
                   class="text-none"
                   to="/admin/articles"
+                  v-if="$user.hasPermission('ViewAny - articles')"
                 >
                   Gestionare articole
                 </v-btn>
@@ -42,6 +44,7 @@
                   text
                   class="text-none"
                   to="/admin/resources"
+                  v-if="$user.hasPermission('ViewAny - resources')"
                 >
                   Gestionare resurse de sprijin
                 </v-btn>
@@ -49,6 +52,7 @@
                   text
                   class="text-none"
                   to="/admin/users"
+                  v-if="$user.hasPermission('ViewAny - users')"
                 >
                   Utilizatori
                 </v-btn>
