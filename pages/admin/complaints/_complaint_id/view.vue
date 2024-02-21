@@ -120,10 +120,6 @@
                             </div>
                           </div>
 
-                          <div class="mb-4">
-                            Solicit ca datele mele personale să nu devină publice ca urmare a acestei plângeri, a cărei soluționare o cer.
-                          </div>
-
                           <div v-if="complaint.proof_type === 'later' || complaint.proof_type === 'yes'" class="mb-4">
                             <label class="complaint-label">Atasamente</label>
                             <div v-if="complaint.proof_type === 'later'">Am dovezi si le pot oferi la cerere</div>

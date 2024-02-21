@@ -82,17 +82,7 @@ export default {
 
       this.$store.commit('complaint/setType', type)
     },
-    async submit() {
-      this.loading = true
-
-      try {
-        await this.$store.dispatch('complaint/getInstitutions', {
-          type: this.type,
-          victim: this.victim,
-        })
-      } catch (e) {}
-
-      this.loading = false
+    submit() {
       this.$emit('next')
     },
   }

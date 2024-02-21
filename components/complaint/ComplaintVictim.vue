@@ -42,16 +42,6 @@ export default {
   methods: {
     async handleChange(victim) {
       this.$store.commit('complaint/setVictim', victim)
-
-      if (victim === 'me') {
-        this.$emit('next')
-        return
-      }
-
-      try {
-        await this.$store.dispatch('complaint/getInstitutions', { victim })
-      } catch (e) {}
-
       this.$emit('next')
     }
   }

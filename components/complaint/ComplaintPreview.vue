@@ -16,6 +16,17 @@
       </span>
     </div>
 
+    <v-btn
+      v-if="institutionsEmails.length > 0"
+      outlined
+      color="#FFF"
+      data-listen-text
+      class="emails-button mt-2"
+      @click="showEmails = true"
+    >
+      Vezi adresele de email
+    </v-btn>
+
     <div class="form-container">
       <div class="preview-container">
         <div class="preview-text">
@@ -45,10 +56,6 @@
           <span data-listen-text>Motivul pentru care vreau să mă mut este <span class="font-weight-bold">{{ reason }}</span></span>
         </div>
 
-        <div class="preview-text mt-4">
-          <span data-listen-text>Solicit ca datele mele personale să nu devină publice ca urmare a acestei plângeri, a cărei soluționare o cer.</span>
-        </div>
-
         <div v-if="uploads.length > 0" class="preview-text mt-5">
           <span>Am atașat plângerii următoarele dovezi:</span>
           <span data-listen-text style="display: none">
@@ -68,12 +75,19 @@
       @back="$emit('back')"
       @next="$emit('next')"
     />
+
+    <complaint-emails-modal
+      :visible="showEmails"
+      :emails="institutionsEmails"
+      @close="showEmails = false"
+    />
   </div>
 </template>
 
 <script>
 
 import { mapState, mapGetters } from 'vuex'
+import ComplaintEmailsModal from './ComplaintEmailsModal'
 
 const options = {
   beaten: 'Am fost bătut/ă',
@@ -86,14 +100,24 @@ const options = {
 }
 
 export default {
+  components: {
+    ComplaintEmailsModal
+  },
   props: {
     steps: {
       type: Number,
       default: 0,
     },
   },
+  data() {
+    return {
+      showEmails: false,
+    }
+  },
   computed: {
     ...mapState('complaint', [
+      'lat',
+      'lng',
       'cnp',
       'type',
       'name',
@@ -103,6 +127,7 @@ export default {
       'uploads',
       'location',
       'locationTo',
+      'institutionsEmails',
     ]),
     ...mapGetters('complaint', ['getInstitutions']),
     step() {
@@ -111,6 +136,23 @@ export default {
     institutions() {
       return this.getInstitutions()
     },
+  },
+  async mounted() {
+    const params = {
+      lat: this.lat,
+      lng: this.lng,
+      type: this.type,
+      location_id: null,
+      victim: this.victim,
+    }
+
+    if (this.location) {
+      params.location_id = this.location.id
+    }
+
+    try {
+      await this.$store.dispatch('complaint/getInstitutions', params)
+    } catch (e) {}
   },
   methods: {
     detailsText(detail) {
@@ -137,6 +179,31 @@ export default {
 <style lang="scss">
 
 .complaint-preview {
+  .emails-button {
+    border-radius: 8px;
+    height: auto !important;
+    background-color: #FFF;
+    border: 1px solid #374151;
+    padding: 0.75rem 1rem !important;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+
+    .v-btn__content {
+      color: #374151;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 24px;
+      font-style: normal;
+      font-family: "Encode Sans", sans-serif;
+    }
+
+    &:hover {
+      &::before {
+        transition: none;
+        background: none;
+      }
+    }
+  }
+
   .preview-container {
     height: 510px;
     overflow-y: auto;

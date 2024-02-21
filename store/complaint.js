@@ -19,6 +19,7 @@ const initialState = {
 
   locations: [],
   institutions: [],
+  institutionsEmails: [],
 }
 
 const state = () => ({
@@ -130,6 +131,9 @@ const mutations = {
   setInstitutions(state, institutions) {
     state.institutions = institutions
   },
+  setInstitutionsEmails(state, institutionsEmails) {
+    state.institutionsEmails = institutionsEmails
+  },
   reset(state) {
     Object.assign(state, initialState)
   }
@@ -143,7 +147,10 @@ const actions = {
   },
   async getInstitutions ({ commit }, params) {
     return this.$axios.get(`/api/public/complaints/institutions/list`, { params })
-      .then(result => commit('setInstitutions', result.data))
+      .then(result => {
+        commit('setInstitutions', result.data.institutions)
+        commit('setInstitutionsEmails', result.data.emails)
+      })
   },
   async create ({ commit }, params) {
     return this.$axios.post(`/api/complaints`, params)

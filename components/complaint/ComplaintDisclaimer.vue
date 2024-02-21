@@ -20,7 +20,7 @@
         Înainte de a completa reclamația, este important să știi că informațiile pe care le vei furniza vor fi transmise către URMĂTOARELE entități: <span class="font-weight-bold">{{ institutions }}</span>
       </p>
       <p class="disclaimer-text" data-listen-text>
-        Dacă ai întrebări sau îngrijorări în legătură cu acest proces, te rugăm să ceri ajutorul unei persoane în care ai încredere. Este important să înțelegi că informațiile pe care le furnizezi vor fi tratate cu confidențialitate și respect față de drepturile tale.
+        Dacă ai întrebări sau îngrijorări în legătură cu acest proces, te rugăm să ceri ajutorul unei persoane în care ai încredere.
       </p>
     </div>
 
