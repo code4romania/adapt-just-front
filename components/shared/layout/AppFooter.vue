@@ -124,9 +124,18 @@
               plain
               color="#333"
               to="/despre"
-              class="footer-link"
+              class="footer-link mr-4"
             >
               Despre proiect
+            </v-btn>
+            <v-btn
+              text
+              plain
+              color="#333"
+              class="footer-link"
+              to="/termeni-si-conditii"
+            >
+              Termeni și condiții
             </v-btn>
           </div>
         </v-col>
