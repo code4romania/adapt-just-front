@@ -89,11 +89,7 @@ export default {
   },
   computed: {
     nextEnabled() {
-      if (!this.cnpText) {
-        return !this.loading
-      }
-      
-      return this.cnpText.length === 13 && /^\d+$/.test(this.cnpText)
+      return !this.loading
     }
   },
   methods: {

@@ -79,7 +79,7 @@
         :steps="steps"
         :uploads="uploads"
         @back="section = 'proof'"
-        @next="section = 'preview'"
+        @next="handleUploadsNext"
       />
 
       <complaint-location-to
@@ -95,7 +95,7 @@
         v-show="section === 'movingReason'"
         :steps="steps"
         :reason="reason"
-        @next="section = 'preview'"
+        @next="handleMovingNext"
         @back="section = 'locationTo'"
       />
 
@@ -237,7 +237,7 @@ export default {
         this.section = 'type'
       }
     },
-    handleLocationNext() {
+    async handleLocationNext() {
       const type = this.type
       let section = 'otherReason'
 
@@ -246,10 +246,15 @@ export default {
       } else if (type === 'move') {
         section = 'locationTo'
       } else if (type === 'evaluation') {
+        await this.getInstitutions()
         section = 'preview'
       }
 
       this.section = section
+    },
+    async handleUploadsNext() {
+      await this.getInstitutions()
+      this.section = 'preview'
     },
     handleProofBack() {
       if (!this.type) {
@@ -258,12 +263,17 @@ export default {
         this.section = 'details'
       }
     },
-    handleProofNext() {
+    async handleProofNext() {
       if (this.proofType === 'yes') {
         this.section = 'uploads'
       } else {
+        await this.getInstitutions()
         this.section = 'preview'
       }
+    },
+    async handleMovingNext() {
+      await this.getInstitutions()
+      this.section = 'preview'
     },
     handlePreviewBack() {
       const type = this.type
@@ -277,6 +287,23 @@ export default {
       } else {
         this.section = 'proof'
       }
+    },
+    async getInstitutions() {
+      const params = {
+        lat: this.lat,
+        lng: this.lng,
+        type: this.type,
+        location_id: null,
+        victim: this.victim,
+      }
+
+      if (this.location) {
+        params.location_id = this.location.id
+      }
+
+      try {
+        await this.$store.dispatch('complaint/getInstitutions', params)
+      } catch (e) {}
     }
   },
 }

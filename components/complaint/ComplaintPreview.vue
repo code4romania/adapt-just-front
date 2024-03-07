@@ -116,8 +116,6 @@ export default {
   },
   computed: {
     ...mapState('complaint', [
-      'lat',
-      'lng',
       'cnp',
       'type',
       'name',
@@ -126,7 +124,6 @@ export default {
       'details',
       'uploads',
       'location',
-      'locationTo',
       'institutionsEmails',
     ]),
     ...mapGetters('complaint', ['getInstitutions']),
@@ -136,23 +133,6 @@ export default {
     institutions() {
       return this.getInstitutions()
     },
-  },
-  async mounted() {
-    const params = {
-      lat: this.lat,
-      lng: this.lng,
-      type: this.type,
-      location_id: null,
-      victim: this.victim,
-    }
-
-    if (this.location) {
-      params.location_id = this.location.id
-    }
-
-    try {
-      await this.$store.dispatch('complaint/getInstitutions', params)
-    } catch (e) {}
   },
   methods: {
     detailsText(detail) {
