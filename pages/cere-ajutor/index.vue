@@ -115,7 +115,7 @@
       />
 
       <complaint-signature
-        v-show="section === 'signature'"
+        v-if="section === 'signature'"
         :steps="steps"
         :signature="signature"
         @back="section = 'preview'"
