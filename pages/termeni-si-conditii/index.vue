@@ -69,7 +69,68 @@
         <p class="content-text " data-listen-text>
           Protecția informațiilor în cursul prelucrării datelor tale personale este o preocupare majoră a Code for Romania, de aceea toate datele personale
         </p>
-      </div>
+         <p class="content-text " data-listen-text>
+          Toate datele personale de pe site sunt stocate și procesate pe servere situate în Uniunea Europeană, ce cad sub incidența legislației europene de protecție a datelor personale. Nicio informație oferită pe acest site nu părăsește teritoriul Uniunii Europene.
+        </p>
+         <p class="content-text " data-listen-text>
+          Centrul pentru Resurse Juridice și Asociația Code for Romania se angajează să nu dezvăluie datele personale cu privire la vizitele tale în aplicație, exceptând situațiile legale sau situațiile prezentate în acest document de Termeni și Condiții.
+        </p>
+        <p class="content-text " data-listen-text>
+          Dacă descoperim un incident cu privire la securitatea datelor personale care prezintă un risc pentru drepturile și libertățile utilizatorilor noștri, vom notifica Autoritatea Națională de Supraveghere privind Prelucrarea Datelor cu Caracter Personale în termen de 72 de ore. Dacă incidentul de securitate este de natură să prezinte un risc ridicat pentru drepturile și libertățile tale, vei fi, de asemenea, notificat
+        </p>
+         <h1 class="content-text font-weight-bold" data-listen-text>
+          8. Marca și dreptul de autor
+        </h1>
+        <p class="content-text " data-listen-text>
+          Dreptul de autor asupra aplicației ”Ceasul bun” este deținut de Centrul de Resurse Juridice. 
+        </p>
+         <p class="content-text " data-listen-text>
+          Marca „Ceasul Bun” aparține societății Starea Nației.
+        </p>
+         <p class="content-text " data-listen-text>
+          Nici un material nu poate fi reprodus parțial, integral sau modificat fără acordul expres exprimat de către Centrul de Resurse Juridice, titularul acestui drept. 
+        </p>
+         <ul class="content-list">
+          <li data-listen-text>Toate drepturile sunt rezervate.</li>
+          <li data-listen-text>Este strict interzisă folosirea aplicației în scopul distrugerii sau alterării sale, a conținutului său, a securității acesteia ori pentru discreditarea sau hărțuirea aplicației Ceasul Bun sau a organizației Centrul de Resurse Juridice, Ministerului Public - Parchetul de pe lângă Înalta Curte de Casație și Justiție sau a Asociației Code for Romania ori a societății Starea Nației.</li>
+          <li data-listen-text>Centrul de Resurse Juridice și Asociația Code for Romania vor aplica toate măsurile de securitate tehnică și organizatorică pentru protejarea datelor asupra cărora deține controlul împotriva oricărei situații de manipulare accidentală sau intenționată, pierdere, distrugere sau împotriva accesului unei persoane neautorizate.</li>
+        </ul>
+         <h1 class="content-text font-weight-bold" data-listen-text>
+         9. Modificari Termeni și Condiții generale de utilizare Site
+        </h1>
+        <p class="content-text " data-listen-text>
+        "Termenii și Condițiile generale de utilizare" constituie, în întregime, un acord încheiat între dumneavoastră și Centrul de Resurse Juridice și Asociația Code for Romania în privința utilizării Ceasul Bun.
+        </p>
+        <p class="content-text " data-listen-text>
+        Centrul de Resurse Juridice și Asociația Code for Romania își rezervă dreptul de a revizui și aduce la zi "Termenii și Condițiile generale de utilizare" în orice moment, fără o anunțare sau o acceptare prealabilă a utilizatorilor.
+        </p>
+         <p class="content-text " data-listen-text>
+        Dacă aveți întrebări cu privire la informațiile cuprinse în această pagină vă rugăm să ne scrieți la adresele  contact@code4.ro sau office@crj.ro.
+        </p>
+         <h1 class="content-text font-weight-bold" data-listen-text>
+        10. Despre noi
+        </h1>
+        <p class="content-text " data-listen-text>
+        Centrul de Resurse Juridice/CRJ este o organzatie non-guvernamentală înființată în anul 1998, ce acționează pentru crearea și funcționarea unui cadru legal și instituțional care să asigure respectarea drepturilor omului și egalității de șanse dar și accesul liber la un act de justiție echitabil și independent.
+        </p>
+        <p class="content-text " data-listen-text>
+        Asociația Code for Romania este o organizație neguvernamentală independentă, neafiliată politic și apolitică, înființată în anul 2016, al cărei scop este de a mobiliza tinerii profesioniști din domeniul IT să creeze instrumente digitale care ajută în soluționarea problemelor sociale. Code for Romania este înființată și funcționează în conformitate cu legea română, actul constitutiv și statutul său și codul de conduită.
+        </p>
+<h1 class="content-text font-weight-bold" data-listen-text>
+        11. Contactează-ne
+        </h1>
+        <p class="content-text " data-listen-text>
+        Pentru orice întrebări sau preocupări, precum și pentru exercitarea drepturilor tale legate de prelucrarea datelor personale de către Centrul de Resurse Juridice sau Asociația Code for Romania, ne poti contacta la:
+        </p>
+         <p class="content-text " data-listen-text>
+           Centrul de Resurse Juridice
+        </p>
+        <p class="content-text " data-listen-text>
+        Adresa: Str. Arcului nr. 19 sect 2 București
+        </p>
+        <p class="content-text " data-listen-text>
+        E-mail: office@crj.ro
+        </p>
     </div>
   </div>
 </template>
