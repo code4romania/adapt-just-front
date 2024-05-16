@@ -116,6 +116,7 @@
         <p class="content-text " data-listen-text>
         Asociația Code for Romania este o organizație neguvernamentală independentă, neafiliată politic și apolitică, înființată în anul 2016, al cărei scop este de a mobiliza tinerii profesioniști din domeniul IT să creeze instrumente digitale care ajută în soluționarea problemelor sociale. Code for Romania este înființată și funcționează în conformitate cu legea română, actul constitutiv și statutul său și codul de conduită.
         </p>
+<h1 class="content-text font-weight-bold" data-listen-text>
         11. Contactează-ne
         </h1>
         <p class="content-text " data-listen-text>
