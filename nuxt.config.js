@@ -20,6 +20,9 @@ export default {
   },
 
   publicRuntimeConfig: {
+    tinyMCE: {
+      apiKey: process.env.TINY_MCE_API_KEY,
+    },
     recaptcha: {
       /* reCAPTCHA options */
       siteKey: process.env.RECAPTCHA_SITE_KEY // for example

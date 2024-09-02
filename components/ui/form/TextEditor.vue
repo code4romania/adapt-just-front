@@ -1,5 +1,5 @@
 <template>
-  <Editor api-key="lrxq3bhmei2fjbso62k9bhdatxeup6dyuehhhjvz9psqzy1v"
+  <Editor :api-key="$config.tinyMCE.apiKey"
           :init="tinyMceMode"
           v-model="innerModel"
   ></Editor>
