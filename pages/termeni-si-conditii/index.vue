@@ -131,6 +131,7 @@
         <p class="content-text " data-listen-text>
         E-mail: office@crj.ro
         </p>
+      </div>
     </div>
   </div>
 </template>
